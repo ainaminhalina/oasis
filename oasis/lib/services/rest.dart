@@ -18,7 +18,8 @@ class Rest {
   Rest._constructor();
 
   //? Change the baseUrl according to your PC's IP address. Remain the port as 3000
-  static const String _baseUrl = '';
+  static const String _baseUrl =
+      'https://us-central1-oasis-1975c.cloudfunctions.net/api';
 
   // Send a GET request to retrieve data from a REST server
   static Future get(String endpoint) async {

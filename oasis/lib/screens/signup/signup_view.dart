@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:oasis/screens/shared/buttons.dart';
 import 'package:stacked/stacked.dart';
-import 'signin_viewmodel.dart';
+import 'package:oasis/screens/shared/colors.dart';
+import 'package:oasis/screens/shared/styles.dart';
 
-class SignInView extends StatefulWidget {
-  static Route route() => MaterialPageRoute(builder: (context) => SignInView());
+import 'signup_viewmodel.dart';
+
+class SignUpView extends StatefulWidget {
+  static Route route() => MaterialPageRoute(builder: (context) => SignUpView());
 
   @override
-  SignInScreenState createState() => SignInScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class SignInScreenState extends State<SignInView> {
+class SignUpScreenState extends State<SignUpView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String _displayName = '';
   String _email = '';
   String _password = '';
   bool _showPassword = false;
+  String _phoneNumber = '';
+
+  get displayName => _displayName;
+  set displayName(value) => setState(() => _displayName = value);
 
   get email => _email;
   set email(value) => setState(() => _email = value);
@@ -24,11 +33,14 @@ class SignInScreenState extends State<SignInView> {
   get showPassword => _showPassword;
   set showPassword(value) => setState(() => _showPassword = value);
 
+  get phoneNumber => _phoneNumber;
+  set phoneNumber(value) => setState(() => _phoneNumber = value);
+
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<SignInViewModel>.reactive(
+    return ViewModelBuilder<SignUpViewModel>.reactive(
       disposeViewModel: false,
-      viewModelBuilder: () => SignInViewModel(),
+      viewModelBuilder: () => SignUpViewModel(),
       builder: (context, model, child) => Scaffold(
         body: Form(
           key: _formKey,
@@ -49,15 +61,23 @@ class SignInScreenState extends State<SignInView> {
                             autocorrect: false,
                             obscureText: false,
                             decoration: InputDecoration(
-                                labelText: 'EMAIL',
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.bold),
+                                labelText: 'FULL NAME',
+                                labelStyle: greyBoldText,
                                 focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                            Color.fromRGBO(3, 161, 164, 1)))),
+                                    borderSide:
+                                        BorderSide(color: accentColor))),
+                            onChanged: (value) => displayName = value,
+                          ),
+                          SizedBox(height: 20.0),
+                          TextFormField(
+                            autocorrect: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                                labelText: 'EMAIL',
+                                labelStyle: greyBoldText,
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: accentColor))),
                             // ignore: missing_return
                             validator: (value) {
                               if (value.isEmpty ||
@@ -73,10 +93,7 @@ class SignInScreenState extends State<SignInView> {
                             obscureText: !showPassword,
                             decoration: InputDecoration(
                                 labelText: 'PASSWORD',
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.bold),
+                                labelStyle: greyBoldText,
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     showPassword
@@ -89,14 +106,39 @@ class SignInScreenState extends State<SignInView> {
                                   onPressed: () => showPassword = !showPassword,
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                            Color.fromRGBO(3, 161, 164, 1)))),
+                                    borderSide:
+                                        BorderSide(color: accentColor))),
                             validator: (value) =>
                                 value.isEmpty ? 'Password is empty' : null,
                             onChanged: (value) => password = value,
                           ),
+                          SizedBox(height: 20.0),
+                          TextFormField(
+                            autocorrect: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                                labelText: 'PHONE NUMBER',
+                                labelStyle: greyBoldText,
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: accentColor))),
+                            onChanged: (value) => phoneNumber = value,
+                          ),
                           SizedBox(height: 40.0),
+                          BusyButton(
+                            height: 40.0,
+                            busy: model.isBusy,
+                            title: 'SIGN-UP',
+                            onPressed: () async {
+                              if (_formKey.currentState.validate())
+                                model.signUp(
+                                    displayName: displayName,
+                                    email: email,
+                                    password: password,
+                                    phoneNumber: phoneNumber,
+                                    context: context);
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -107,7 +149,7 @@ class SignInScreenState extends State<SignInView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Haven\'t signed up?',
+                            'Already have an account?',
                             style: TextStyle(
                               fontFamily: 'Segoe UI',
                             ),
@@ -115,12 +157,12 @@ class SignInScreenState extends State<SignInView> {
                           SizedBox(width: 5.0),
                           InkWell(
                             onTap: () {
-                              model.navigateToSignUp(context);
+                              model.navigateToSignIn(context);
                             },
                             child: Text(
-                              'Sign-Up',
+                              'Sign-In',
                               style: TextStyle(
-                                  color: Color.fromRGBO(3, 161, 164, 1),
+                                  color: accentColor,
                                   fontFamily: 'Segoe UI',
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline),
