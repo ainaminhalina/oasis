@@ -20,6 +20,7 @@ class SignUpScreenState extends State<SignUpView> {
   String _password = '';
   bool _showPassword = false;
   String _phoneNumber = '';
+  String _type = '';
 
   get displayName => _displayName;
   set displayName(value) => setState(() => _displayName = value);
@@ -35,6 +36,9 @@ class SignUpScreenState extends State<SignUpView> {
 
   get phoneNumber => _phoneNumber;
   set phoneNumber(value) => setState(() => _phoneNumber = value);
+
+  get type => _type;
+  set type(value) => setState(() => _type = value);
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +56,7 @@ class SignUpScreenState extends State<SignUpView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     _builtMyText(),
+                    _builtMyText2(),
                     Container(
                       padding:
                           EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
@@ -124,6 +129,18 @@ class SignUpScreenState extends State<SignUpView> {
                                         BorderSide(color: accentColor))),
                             onChanged: (value) => phoneNumber = value,
                           ),
+                          SizedBox(height: 20.0),
+                          TextFormField(
+                            autocorrect: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                                labelText: 'TYPE',
+                                labelStyle: greyBoldText,
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: accentColor))),
+                            onChanged: (value) => type = value,
+                          ),
                           SizedBox(height: 40.0),
                           BusyButton(
                             height: 40.0,
@@ -136,6 +153,7 @@ class SignUpScreenState extends State<SignUpView> {
                                     email: email,
                                     password: password,
                                     phoneNumber: phoneNumber,
+                                    type: type,
                                     context: context);
                             },
                           ),
@@ -188,10 +206,31 @@ class SignUpScreenState extends State<SignUpView> {
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.fromLTRB(16.0, 135.0, 0.0, 0.0),
-            child: Text('OASIS',
+            child: Text('Create Your Account',
                 style: TextStyle(
                     fontFamily: 'Segoe UI',
-                    fontSize: 50.0,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container _builtMyText2() {
+    return Container(
+      child: Stack(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 0.0),
+            child: Text(
+                'Try the sensation of ease in managing all school activities in one hand',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: grey,
+                    fontFamily: 'Segoe UI',
+                    fontSize: 16.0,
                     fontWeight: FontWeight.bold)),
           ),
         ],

@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Online Access School Information System',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SplashView(),

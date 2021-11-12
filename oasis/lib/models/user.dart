@@ -9,6 +9,7 @@ class User {
   String _password;
   String _phoneNumber;
   String _profilePicture;
+  String _type;
 
   get id => _id;
   set id(value) => _id = value;
@@ -28,19 +29,24 @@ class User {
   get profilePicture => _profilePicture;
   set profilePicture(value) => _profilePicture = value;
 
+  get type => _type;
+  set type(value) => _type = value;
+
   User(
       {String id,
       String displayName = '',
       String email = '',
       String password = '',
       String phoneNumber = '',
-      String profilePicture = ''})
+      String profilePicture = '',
+      String type = ''})
       : _id = id,
         _displayName = displayName,
         _email = email,
         _password = password,
         _phoneNumber = phoneNumber,
-        _profilePicture = profilePicture;
+        _profilePicture = profilePicture,
+        _type = type;
 
   factory User.createNew(
           {String id,
@@ -48,15 +54,16 @@ class User {
           String email,
           String password,
           String phoneNumber,
-          String profilePicture}) =>
+          String profilePicture,
+          String type}) =>
       User(
-        id: id,
-        displayName: displayName,
-        email: email,
-        password: password,
-        phoneNumber: phoneNumber,
-        profilePicture: profilePicture,
-      );
+          id: id,
+          displayName: displayName,
+          email: email,
+          password: password,
+          phoneNumber: phoneNumber,
+          profilePicture: profilePicture,
+          type: type);
 
   factory User.fromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> json = snapshot.data();
@@ -71,7 +78,8 @@ class User {
             email: from.email,
             password: from.password,
             phoneNumber: from.phoneNumber,
-            profilePicture: from.profilePicture);
+            profilePicture: from.profilePicture,
+            type: from.type);
 
   factory User.fromRawJson(String str) => User.fromJson(jsonDecode(str));
 
@@ -82,7 +90,8 @@ class User {
             email: json['email'],
             password: json['password'],
             phoneNumber: json['phoneNumber'],
-            profilePicture: json['profilePicture']);
+            profilePicture: json['profilePicture'],
+            type: json['type']);
 
   String toRawJson() => jsonEncode(toJson());
 
@@ -91,6 +100,7 @@ class User {
         'email': email,
         'password': password,
         'phoneNumber': phoneNumber,
-        'profilePicture': profilePicture
+        'profilePicture': profilePicture,
+        'type': type
       };
 }

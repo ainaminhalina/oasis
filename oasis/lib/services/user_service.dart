@@ -40,7 +40,8 @@ class UserService {
         'id': user.id,
         'displayName': user.displayName,
         'email': user.email,
-        'phoneNumber': user.phoneNumber
+        'phoneNumber': user.phoneNumber,
+        'type': user.type
       },
     );
   }

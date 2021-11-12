@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:oasis/screens/shared/colors.dart';
+import 'package:oasis/screens/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 import 'signin_viewmodel.dart';
+import 'package:oasis/screens/shared/buttons.dart';
 
 class SignInView extends StatefulWidget {
   static Route route() => MaterialPageRoute(builder: (context) => SignInView());
@@ -39,6 +42,15 @@ class SignInScreenState extends State<SignInView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    SizedBox(height: 150.0),
+                    Center(
+                      child: Image.asset(
+                        'assets/images/oasis_logo.png',
+                        height: 125,
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
                     _builtMyText(),
                     Container(
                       padding:
@@ -50,10 +62,7 @@ class SignInScreenState extends State<SignInView> {
                             obscureText: false,
                             decoration: InputDecoration(
                                 labelText: 'EMAIL',
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.bold),
+                                labelStyle: greyBoldText,
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color:
@@ -73,10 +82,7 @@ class SignInScreenState extends State<SignInView> {
                             obscureText: !showPassword,
                             decoration: InputDecoration(
                                 labelText: 'PASSWORD',
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.bold),
+                                labelStyle: greyBoldText,
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     showPassword
@@ -97,6 +103,18 @@ class SignInScreenState extends State<SignInView> {
                             onChanged: (value) => password = value,
                           ),
                           SizedBox(height: 40.0),
+                          BusyButton(
+                            height: 40.0,
+                            busy: model.isBusy,
+                            title: 'SIGN-IN',
+                            onPressed: () async {
+                              if (_formKey.currentState.validate())
+                                model.signIn(
+                                    email: email,
+                                    password: password,
+                                    context: context);
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -120,7 +138,7 @@ class SignInScreenState extends State<SignInView> {
                             child: Text(
                               'Sign-Up',
                               style: TextStyle(
-                                  color: Color.fromRGBO(3, 161, 164, 1),
+                                  color: accentColor,
                                   fontFamily: 'Segoe UI',
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline),
@@ -145,10 +163,11 @@ class SignInScreenState extends State<SignInView> {
         children: <Widget>[
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.fromLTRB(16.0, 135.0, 0.0, 0.0),
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             child: Text('OASIS',
                 style: TextStyle(
-                    fontFamily: 'Segoe UI',
+                    color: accentColor,
+                    fontFamily: 'Philosopher',
                     fontSize: 50.0,
                     fontWeight: FontWeight.bold)),
           ),

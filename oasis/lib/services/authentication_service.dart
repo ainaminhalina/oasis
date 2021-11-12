@@ -43,6 +43,7 @@ class AuthenticationService {
     @required String email,
     @required String password,
     @required String phoneNumber,
+    @required String type,
   }) async {
     try {
       auth.UserCredential userCredential = await _firebaseAuth
@@ -54,6 +55,7 @@ class AuthenticationService {
         displayName: displayName,
         email: email,
         phoneNumber: phoneNumber,
+        type: type,
       );
 
       await _userService.createUser(_currentUser);

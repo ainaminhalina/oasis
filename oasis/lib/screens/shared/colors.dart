@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-const Color themeColor = Color.fromRGBO(57, 57, 57, 1);
-const Color accentColor = Color.fromRGBO(3, 161, 164, 1);
+const Color themeColor = Color.fromRGBO(2, 125, 229, 1);
+const Color accentColor = Color.fromRGBO(2, 125, 229, 1);
 const Color buttonGreenColor = Color.fromRGBO(47, 155, 136, 1);
 const Color botttomBarColor = Color.fromRGBO(104, 104, 104, 1);
 const Color tabBarColor = Color.fromRGBO(119, 119, 119, 1);
 const Color dividerColor = Color.fromRGBO(200, 200, 200, 1);
-
 
 const Color bgColor = Color.fromRGBO(250, 250, 250, 1);
 const Color primaryColor = Color.fromRGBO(241, 241, 241, 1);
@@ -14,7 +13,7 @@ const Color primaryColor = Color.fromRGBO(241, 241, 241, 1);
 const Color black = Colors.black;
 const Color white = Colors.white;
 const Color green = Colors.green;
-const Color grey = Colors.grey;
+const Color grey = Color.fromRGBO(78, 78, 78, 1);
 const Color darkText = Colors.black54;
 const Color highlightColor = Colors.green;
 

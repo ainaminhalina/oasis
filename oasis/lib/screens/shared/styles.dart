@@ -80,7 +80,7 @@ const h6 = TextStyle(
     fontWeight: FontWeight.w500,
     fontFamily: 'Montserrat');
 
-    const h6Primary = TextStyle(
+const h6Primary = TextStyle(
     color: primaryColor,
     fontSize: 16,
     fontWeight: FontWeight.w500,

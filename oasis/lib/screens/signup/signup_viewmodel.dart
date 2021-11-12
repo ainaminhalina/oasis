@@ -5,6 +5,7 @@ import 'package:oasis/screens/signin/signin_view.dart';
 import 'package:oasis/screens/viewmodel.dart';
 import 'package:oasis/services/authentication_service.dart';
 import 'package:oasis/screens/shared/toastAndDialog.dart';
+import 'package:oasis/screens/main/main_screen.dart';
 
 class SignUpViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
@@ -15,6 +16,7 @@ class SignUpViewModel extends ViewModel {
     @required String email,
     @required String password,
     @required String phoneNumber,
+    @required String type,
     @required context,
   }) async {
     setBusy(true);
@@ -24,6 +26,7 @@ class SignUpViewModel extends ViewModel {
       email: email,
       password: password,
       phoneNumber: phoneNumber,
+      type: type,
     );
 
     setBusy(false);
@@ -33,9 +36,9 @@ class SignUpViewModel extends ViewModel {
           () => Navigator.of(context, rootNavigator: true).pop());
     } else {
       if (result != null) {
-        // await Future.delayed(Duration(seconds: 1));
-        // await Navigator.of(context).pushReplacement(
-        //     MaterialPageRoute(builder: (context) => MainScreen(tab: 0)));
+        await Future.delayed(Duration(seconds: 1));
+        await Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => MainScreen(tab: 0)));
       } else {
         awesomeSingleDialog(
             context,
