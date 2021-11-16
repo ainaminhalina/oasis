@@ -205,7 +205,7 @@ class SignUpScreenState extends State<SignUpView> {
         children: <Widget>[
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.fromLTRB(16.0, 135.0, 0.0, 0.0),
+            padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
             child: Text('Create Your Account',
                 style: TextStyle(
                     fontFamily: 'Segoe UI',

@@ -79,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ],
       currentIndex: selectedIndex,
-      selectedItemColor: Colors.green,
+      selectedItemColor: Colors.blue,
       type: BottomNavigationBarType.fixed,
       onTap: _onItemTapped,
     );
