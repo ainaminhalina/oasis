@@ -5,7 +5,7 @@ import 'package:oasis/screens/home/home_view.dart';
 // import 'package:motokar/screens/explore/explore_view.dart';
 // import 'package:motokar/screens/trips/trips_view.dart';
 // import 'package:motokar/screens/garage/garage_view.dart';
-// import 'package:motokar/screens/profile/profile_view.dart';
+import 'package:oasis/screens/profile/profile_view.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({this.tab});
@@ -33,16 +33,14 @@ class _MainScreenState extends State<MainScreen> {
       currentScreen = HomeView();
     }
     if (selectedIndex == 1) {
-      // currentScreen = TripsView();
+      currentScreen = HomeView();
     }
     if (selectedIndex == 2) {
-      // currentScreen = GarageView();
+      currentScreen = HomeView();
     }
-    // if (selectedIndex == 3) {
-    //   currentScreen = ChatView();
-    // }
+
     if (selectedIndex == 3) {
-      // currentScreen = ProfileView();
+      currentScreen = ProfileView();
     }
   }
 
@@ -92,16 +90,14 @@ class _MainScreenState extends State<MainScreen> {
       currentScreen = HomeView();
     }
     if (selectedIndex == 1) {
-      // currentScreen = TripsView();
+      currentScreen = HomeView();
     }
     if (selectedIndex == 2) {
-      // currentScreen = GarageView();
+      currentScreen = HomeView();
     }
-    // if (selectedIndex == 3) {
-    //   currentScreen = ChatView();
-    // }
+
     if (selectedIndex == 3) {
-      // currentScreen = ProfileView();
+      currentScreen = ProfileView();
     }
   }
 }
