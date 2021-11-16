@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:oasis/app/locator.dart';
-import 'package:oasis/screens/profile/updateProfile_view.dart';
+import 'package:oasis/screens/teacherApp/profile/updateProfile_view.dart';
 import 'package:oasis/screens/signin/signin_view.dart';
 import 'package:oasis/screens/viewmodel.dart';
 import 'package:oasis/services/authentication_service.dart';
@@ -44,9 +44,9 @@ class ProfileViewModel extends ViewModel {
     setBusy(false);
   }
 
-  void navigateToUpdateProfile(context, profile) {
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
-        builder: (context) => UpdateProfileView(profile: profile)));
+  void navigateToUpdateProfile(context, user) {
+    Navigator.of(context, rootNavigator: true).push(
+        MaterialPageRoute(builder: (context) => UpdateProfileView(user: user)));
   }
 
   void signOut(context) {

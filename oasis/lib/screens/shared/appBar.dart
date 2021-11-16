@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:oasis/screens/profile/profile_view.dart';
 
 import 'colors.dart';
 
@@ -17,7 +16,7 @@ AppBar buildSectionBar(BuildContext context, String title,
   return AppBar(
     centerTitle: true,
     elevation: elevation,
-    backgroundColor: Color.fromRGBO(3, 161, 164, 1),
+    backgroundColor: Color.fromRGBO(2, 125, 229, 1),
     title: Text(title, style: TextStyle(fontWeight: FontWeight.w500)),
     leading: Row(
       children: <Widget>[

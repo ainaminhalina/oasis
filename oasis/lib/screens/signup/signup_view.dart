@@ -3,8 +3,8 @@ import 'package:oasis/screens/shared/buttons.dart';
 import 'package:stacked/stacked.dart';
 import 'package:oasis/screens/shared/colors.dart';
 import 'package:oasis/screens/shared/styles.dart';
-
 import 'signup_viewmodel.dart';
+import 'dart:math';
 
 class SignUpView extends StatefulWidget {
   static Route route() => MaterialPageRoute(builder: (context) => SignUpView());
@@ -20,7 +20,7 @@ class SignUpScreenState extends State<SignUpView> {
   String _password = '';
   bool _showPassword = false;
   String _phoneNumber = '';
-  String _type = '';
+  String _type = 'Teacher';
 
   get displayName => _displayName;
   set displayName(value) => setState(() => _displayName = value);
@@ -40,8 +40,11 @@ class SignUpScreenState extends State<SignUpView> {
   get type => _type;
   set type(value) => setState(() => _type = value);
 
+  var _userTypes = ['Teacher', 'Student'];
+
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return ViewModelBuilder<SignUpViewModel>.reactive(
       disposeViewModel: false,
       viewModelBuilder: () => SignUpViewModel(),
@@ -130,16 +133,68 @@ class SignUpScreenState extends State<SignUpView> {
                             onChanged: (value) => phoneNumber = value,
                           ),
                           SizedBox(height: 20.0),
-                          TextFormField(
-                            autocorrect: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                                labelText: 'TYPE',
-                                labelStyle: greyBoldText,
-                                focusedBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: accentColor))),
-                            onChanged: (value) => type = value,
+                          // TextFormField(
+                          //   autocorrect: false,
+                          //   obscureText: false,
+                          //   decoration: InputDecoration(
+                          //       labelText: 'TYPE',
+                          //       labelStyle: greyBoldText,
+                          //       focusedBorder: UnderlineInputBorder(
+                          //           borderSide:
+                          //               BorderSide(color: accentColor))),
+                          //   onChanged: (value) => type = value,
+                          // ),
+                          Container(
+                            width: screenWidth,
+                            child: Row(
+                              children: [
+                                Text(
+                                  'SELECT ROLES:',
+                                  style: TextStyle(
+                                      color: grey,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.5),
+                                ),
+                                Spacer(),
+                                Container(
+                                  child: DropdownButton<String>(
+                                    underline: Container(),
+                                    items: _userTypes
+                                        .map((String dropDownStringItem) {
+                                      return DropdownMenuItem<String>(
+                                        value: dropDownStringItem,
+                                        child: Row(
+                                          children: [
+                                            SizedBox(width: 10),
+                                            Container(
+                                              child: Text(
+                                                dropDownStringItem + " ",
+                                                style: TextStyle(
+                                                    color: Colors.black38,
+                                                    fontSize: 16.5,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }).toList(),
+                                    icon: Transform.rotate(
+                                        angle: 90 * pi / 180,
+                                        child: Icon(Icons.chevron_right,
+                                            color: Colors.black54)),
+                                    onChanged: (String newType) {
+                                      setState(() {
+                                        type = newType;
+                                      });
+                                    },
+                                    value: type,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(height: 40.0),
                           BusyButton(

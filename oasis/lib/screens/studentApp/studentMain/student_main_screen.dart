@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'package:oasis/screens/home/home_view.dart';
+import 'package:oasis/screens/studentApp/home/home_view.dart';
 
 // import 'package:motokar/screens/explore/explore_view.dart';
 // import 'package:motokar/screens/trips/trips_view.dart';
 // import 'package:motokar/screens/garage/garage_view.dart';
-import 'package:oasis/screens/profile/profile_view.dart';
+import 'package:oasis/screens/studentApp/profile/profile_view.dart';
 
-class MainScreen extends StatefulWidget {
-  MainScreen({this.tab});
+class StudentMainScreen extends StatefulWidget {
+  StudentMainScreen({this.tab});
   int tab;
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  _StudentMainScreenState createState() => _StudentMainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _StudentMainScreenState extends State<StudentMainScreen> {
   int _selectedIndex = 0;
   Widget _currentScreen;
 
@@ -65,7 +65,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.pages),
-          label: 'REPORTS',
+          label: 'RESULTS',
         ),
         // BottomNavigationBarItem(
         //   icon: Icon(Icons.chat),

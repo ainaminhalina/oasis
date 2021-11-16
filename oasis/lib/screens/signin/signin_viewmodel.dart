@@ -6,7 +6,8 @@ import 'package:oasis/screens/signup/signup_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:oasis/services/authentication_service.dart';
 import 'package:oasis/screens/shared/toastAndDialog.dart';
-import 'package:oasis/screens/main/main_screen.dart';
+import 'package:oasis/screens/teacherApp/teacherMain/teacher_main_screen.dart';
+import 'package:oasis/screens/studentApp/studentMain/student_main_screen.dart';
 
 class SignInViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
@@ -32,8 +33,13 @@ class SignInViewModel extends ViewModel {
     } else {
       if (result) {
         await Future.delayed(Duration(seconds: 1));
-        await Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => MainScreen(tab: 0)));
+        if (currentUser.type == "Teacher") {
+          await Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => TeacherMainScreen(tab: 0)));
+        } else {
+          await Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => StudentMainScreen(tab: 0)));
+        }
       } else {
         awesomeSingleDialog(
             context,

@@ -5,7 +5,8 @@ import 'package:oasis/services/authentication_service.dart';
 import 'package:oasis/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
-import '../shared/my_toast.dart';
+import '../../shared/my_toast.dart';
+import 'package:oasis/screens/shared/colors.dart';
 
 import 'profile_viewmodel.dart';
 
@@ -43,7 +44,7 @@ class _ProfileViewState extends State<ProfileView> {
                     style: TextStyle(
                       fontFamily: 'Segoe UI',
                       fontSize: 30.0,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -53,7 +54,7 @@ class _ProfileViewState extends State<ProfileView> {
                     style: TextStyle(
                       fontFamily: 'Segoe UI',
                       fontSize: 15.0,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -70,7 +71,7 @@ class _ProfileViewState extends State<ProfileView> {
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
                         fontSize: 13.0,
-                        color: Colors.red,
+                        color: Colors.blue,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -95,7 +96,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     'ACCOUNT SETTINGS',
                                     style: TextStyle(
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.grey.shade500,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   SizedBox(
@@ -109,14 +110,14 @@ class _ProfileViewState extends State<ProfileView> {
                                     child: Text(
                                       'Personal Information',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: grey,
                                       ),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -133,13 +134,13 @@ class _ProfileViewState extends State<ProfileView> {
                                   Text(
                                     'Payments and payouts',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -156,13 +157,13 @@ class _ProfileViewState extends State<ProfileView> {
                                   Text(
                                     'Notifications',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -183,7 +184,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     'PROMOTIONS',
                                     style: TextStyle(
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.grey.shade500,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   SizedBox(
@@ -192,13 +193,13 @@ class _ProfileViewState extends State<ProfileView> {
                                   Text(
                                     'Refer a renter',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -219,7 +220,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     'SUPPORT',
                                     style: TextStyle(
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.grey.shade500,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   SizedBox(
@@ -228,7 +229,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   Text(
                                     'Safety Center',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -245,19 +246,19 @@ class _ProfileViewState extends State<ProfileView> {
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                   Text(
                                     'Get Help',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -274,13 +275,13 @@ class _ProfileViewState extends State<ProfileView> {
                                   Text(
                                     'Give us feedback',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -301,7 +302,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     'LEGAL',
                                     style: TextStyle(
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.grey.shade500,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   SizedBox(
@@ -310,13 +311,13 @@ class _ProfileViewState extends State<ProfileView> {
                                   Text(
                                     'Terms of service',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],
@@ -349,7 +350,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   SizedBox(
                                     height: 40.0,
                                     child: Divider(
-                                      color: Colors.white,
+                                      color: grey,
                                     ),
                                   ),
                                 ],

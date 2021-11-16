@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:oasis/screens/main/main_screen.dart';
+import 'package:oasis/screens/teacherApp/teacherMain/teacher_main_screen.dart';
 import 'package:stacked/stacked.dart';
-import 'package:oasis/models/profile.dart';
-import 'package:oasis/screens/profile/profile_view.dart';
-import 'package:oasis/screens/profile/profile_viewmodel.dart';
+import 'package:oasis/models/user.dart';
+import 'package:oasis/screens/teacherApp/profile/profile_view.dart';
+import 'package:oasis/screens/teacherApp/profile/profile_viewmodel.dart';
 import 'package:oasis/screens/shared/textField.dart';
 import 'package:oasis/screens/shared/buttons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,8 +17,8 @@ import 'package:oasis/screens/shared/appBar.dart';
 import 'package:oasis/screens/shared/toastAndDialog.dart';
 
 class UpdateProfileView extends StatefulWidget {
-  const UpdateProfileView({this.profile});
-  final Profile profile;
+  const UpdateProfileView({this.user});
+  final User user;
 
   @override
   _UpdateProfileViewState createState() => _UpdateProfileViewState();
@@ -51,9 +51,9 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
     super.initState();
 
     displayNameController =
-        TextEditingController(text: widget.profile.displayName);
+        TextEditingController(text: widget.user.displayName);
     phoneNumberController =
-        TextEditingController(text: widget.profile.phoneNumber);
+        TextEditingController(text: widget.user.phoneNumber);
   }
 
   @override
@@ -101,22 +101,20 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                               height: MediaQuery.of(context).size.width / 3,
                               color: Colors.grey,
                               child: _imageFile == null &&
-                                      (widget.profile.profilePicture == '' ||
-                                          widget.profile.profilePicture == null)
+                                      (widget.user.profilePicture == '' ||
+                                          widget.user.profilePicture == null)
                                   ? Icon(Icons.add_a_photo,
                                       size: 50, color: Colors.white)
                                   : _imageFile != null &&
-                                          (widget.profile.profilePicture ==
-                                                  '' ||
-                                              widget.profile.profilePicture ==
+                                          (widget.user.profilePicture == '' ||
+                                              widget.user.profilePicture ==
                                                   null)
                                       ? Image.file(
                                           _imageFile,
                                           fit: BoxFit.cover,
                                         )
                                       : CachedNetworkImage(
-                                          imageUrl:
-                                              widget.profile.profilePicture,
+                                          imageUrl: widget.user.profilePicture,
                                           fit: BoxFit.fill,
                                           placeholder: (context, url) => Center(
                                               child:
@@ -147,7 +145,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                             Text(
                               'Full name:',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: grey,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18),
                             ),
@@ -175,7 +173,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                             Text(
                               'Phone number:',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: grey,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18),
                             ),
@@ -212,7 +210,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            MainScreen(tab: 3)));
+                                            TeacherMainScreen(tab: 3)));
                               });
                             } else if (model.currentUser.profilePicture != '') {
                               model.updateProfile(
@@ -223,7 +221,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          MainScreen(tab: 3)));
+                                          TeacherMainScreen(tab: 3)));
                             } else {
                               model.updateProfile(
                                 displayName: displayNameController.text,
@@ -235,11 +233,11 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          MainScreen(tab: 3)));
+                                          TeacherMainScreen(tab: 3)));
                             }
                           }
-                        }, Color.fromRGBO(3, 161, 164, 1),
-                            Color.fromRGBO(3, 161, 164, 1), screenWidth - 30,
+                        }, Color.fromRGBO(2, 125, 229, 1),
+                            Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,
                             textColor: Colors.white),
                       ),
                     ],
