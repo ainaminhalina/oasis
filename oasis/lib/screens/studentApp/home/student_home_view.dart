@@ -4,23 +4,23 @@ import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
 import '../../shared/my_toast.dart';
 
-import 'home_viewmodel.dart';
+import 'student_home_viewmodel.dart';
 
-class HomeView extends StatefulWidget {
-  HomeView();
+class StudentHomeView extends StatefulWidget {
+  StudentHomeView();
 
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _StudentHomeViewState createState() => _StudentHomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _StudentHomeViewState extends State<StudentHomeView> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeViewModel>.reactive(
+    return ViewModelBuilder<StudentHomeViewModel>.reactive(
         disposeViewModel: false,
-        viewModelBuilder: () => HomeViewModel(),
+        viewModelBuilder: () => StudentHomeViewModel(),
         builder: (context, model, child) => Scaffold(
               body: ListView(
                 children: [

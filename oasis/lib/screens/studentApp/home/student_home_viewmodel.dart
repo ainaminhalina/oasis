@@ -7,7 +7,7 @@ import 'package:oasis/screens/signin/signin_view.dart';
 import 'package:oasis/screens/viewmodel.dart';
 import 'package:oasis/services/authentication_service.dart';
 
-class HomeViewModel extends ViewModel {
+class StudentHomeViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
 

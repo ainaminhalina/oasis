@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:oasis/screens/teacherApp/home/home_view.dart';
-
-// import 'package:motokar/screens/explore/explore_view.dart';
-// import 'package:motokar/screens/trips/trips_view.dart';
-// import 'package:motokar/screens/garage/garage_view.dart';
-import 'package:oasis/screens/teacherApp/profile/profile_view.dart';
+import 'package:oasis/screens/teacherApp/home/teacher_home_view.dart';
+import 'package:oasis/screens/teacherApp/profile/teacher_profile_view.dart';
 
 class TeacherMainScreen extends StatefulWidget {
   TeacherMainScreen({this.tab});
@@ -30,17 +26,17 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
     super.initState();
     selectedIndex = widget.tab;
     if (selectedIndex == 0) {
-      currentScreen = HomeView();
+      currentScreen = TeacherHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = HomeView();
+      currentScreen = TeacherProfileView();
     }
     if (selectedIndex == 2) {
-      currentScreen = HomeView();
+      currentScreen = TeacherProfileView();
     }
 
     if (selectedIndex == 3) {
-      currentScreen = ProfileView();
+      currentScreen = TeacherProfileView();
     }
   }
 
@@ -87,17 +83,17 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
     selectedIndex = index;
 
     if (selectedIndex == 0) {
-      currentScreen = HomeView();
+      currentScreen = TeacherHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = HomeView();
+      currentScreen = TeacherProfileView();
     }
     if (selectedIndex == 2) {
-      currentScreen = HomeView();
+      currentScreen = TeacherProfileView();
     }
 
     if (selectedIndex == 3) {
-      currentScreen = ProfileView();
+      currentScreen = TeacherProfileView();
     }
   }
 }

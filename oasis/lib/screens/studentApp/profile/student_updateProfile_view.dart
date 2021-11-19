@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:oasis/screens/teacherApp/teacherMain/teacher_main_screen.dart';
+import 'package:oasis/screens/studentApp/studentMain/student_main_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:oasis/models/user.dart';
-import 'package:oasis/screens/teacherApp/profile/profile_view.dart';
-import 'package:oasis/screens/teacherApp/profile/profile_viewmodel.dart';
+import 'package:oasis/screens/studentApp/profile/student_profile_view.dart';
+import 'package:oasis/screens/studentApp/profile/student_profile_viewmodel.dart';
 import 'package:oasis/screens/shared/textField.dart';
 import 'package:oasis/screens/shared/buttons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -16,15 +16,16 @@ import 'package:oasis/screens/shared/colors.dart';
 import 'package:oasis/screens/shared/appBar.dart';
 import 'package:oasis/screens/shared/toastAndDialog.dart';
 
-class UpdateProfileView extends StatefulWidget {
-  const UpdateProfileView({this.user});
+class StudentUpdateProfileView extends StatefulWidget {
+  const StudentUpdateProfileView({this.user});
   final User user;
 
   @override
-  _UpdateProfileViewState createState() => _UpdateProfileViewState();
+  _StudentUpdateProfileViewState createState() =>
+      _StudentUpdateProfileViewState();
 }
 
-class _UpdateProfileViewState extends State<UpdateProfileView> {
+class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
   TextEditingController displayNameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
 
@@ -61,9 +62,9 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return ViewModelBuilder<ProfileViewModel>.reactive(
+    return ViewModelBuilder<StudentProfileViewModel>.reactive(
       disposeViewModel: false,
-      viewModelBuilder: () => ProfileViewModel(),
+      viewModelBuilder: () => StudentProfileViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: buildSectionBar(context, 'Update Profile'),
         body: Stack(
@@ -210,7 +211,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            TeacherMainScreen(tab: 3)));
+                                            StudentMainScreen(tab: 3)));
                               });
                             } else if (model.currentUser.profilePicture != '') {
                               model.updateProfile(
@@ -221,7 +222,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          TeacherMainScreen(tab: 3)));
+                                          StudentMainScreen(tab: 3)));
                             } else {
                               model.updateProfile(
                                 displayName: displayNameController.text,
@@ -233,7 +234,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          TeacherMainScreen(tab: 3)));
+                                          StudentMainScreen(tab: 3)));
                             }
                           }
                         }, Color.fromRGBO(2, 125, 229, 1),

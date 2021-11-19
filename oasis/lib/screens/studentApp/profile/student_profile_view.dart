@@ -8,23 +8,23 @@ import 'package:provider/provider.dart';
 import '../../shared/my_toast.dart';
 import 'package:oasis/screens/shared/colors.dart';
 
-import 'profile_viewmodel.dart';
+import 'student_profile_viewmodel.dart';
 
-class ProfileView extends StatefulWidget {
-  ProfileView();
+class StudentProfileView extends StatefulWidget {
+  StudentProfileView();
 
   @override
-  _ProfileViewState createState() => _ProfileViewState();
+  _StudentProfileViewState createState() => _StudentProfileViewState();
 }
 
-class _ProfileViewState extends State<ProfileView> {
+class _StudentProfileViewState extends State<StudentProfileView> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<ProfileViewModel>.reactive(
+    return ViewModelBuilder<StudentProfileViewModel>.reactive(
         disposeViewModel: false,
-        viewModelBuilder: () => ProfileViewModel(),
+        viewModelBuilder: () => StudentProfileViewModel(),
         builder: (context, model, child) => Scaffold(
               body: ListView(
                 children: [

@@ -6,8 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:oasis/screens/teacherApp/teacherMain/teacher_main_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:oasis/models/user.dart';
-import 'package:oasis/screens/teacherApp/profile/profile_view.dart';
-import 'package:oasis/screens/teacherApp/profile/profile_viewmodel.dart';
+import 'package:oasis/screens/teacherApp/profile/teacher_profile_view.dart';
+import 'package:oasis/screens/teacherApp/profile/teacher_profile_viewmodel.dart';
 import 'package:oasis/screens/shared/textField.dart';
 import 'package:oasis/screens/shared/buttons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -16,15 +16,16 @@ import 'package:oasis/screens/shared/colors.dart';
 import 'package:oasis/screens/shared/appBar.dart';
 import 'package:oasis/screens/shared/toastAndDialog.dart';
 
-class UpdateProfileView extends StatefulWidget {
-  const UpdateProfileView({this.user});
+class TeacherUpdateProfileView extends StatefulWidget {
+  const TeacherUpdateProfileView({this.user});
   final User user;
 
   @override
-  _UpdateProfileViewState createState() => _UpdateProfileViewState();
+  _TeacherUpdateProfileViewState createState() =>
+      _TeacherUpdateProfileViewState();
 }
 
-class _UpdateProfileViewState extends State<UpdateProfileView> {
+class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
   TextEditingController displayNameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
 
@@ -61,9 +62,9 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return ViewModelBuilder<ProfileViewModel>.reactive(
+    return ViewModelBuilder<TeacherProfileViewModel>.reactive(
       disposeViewModel: false,
-      viewModelBuilder: () => ProfileViewModel(),
+      viewModelBuilder: () => TeacherProfileViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: buildSectionBar(context, 'Update Profile'),
         body: Stack(

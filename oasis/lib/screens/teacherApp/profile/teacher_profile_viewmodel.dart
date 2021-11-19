@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:oasis/app/locator.dart';
-import 'package:oasis/screens/teacherApp/profile/updateProfile_view.dart';
+import 'package:oasis/screens/teacherApp/profile/teacher_updateProfile_view.dart';
 import 'package:oasis/screens/signin/signin_view.dart';
 import 'package:oasis/screens/viewmodel.dart';
 import 'package:oasis/services/authentication_service.dart';
 import 'package:oasis/services/user_service.dart';
 // import 'package:oasis/services/cloud_storage_service.dart';
 
-class ProfileViewModel extends ViewModel {
+class TeacherProfileViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
   final UserService _userService = locator<UserService>();
@@ -45,8 +45,8 @@ class ProfileViewModel extends ViewModel {
   }
 
   void navigateToUpdateProfile(context, user) {
-    Navigator.of(context, rootNavigator: true).push(
-        MaterialPageRoute(builder: (context) => UpdateProfileView(user: user)));
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+        builder: (context) => TeacherUpdateProfileView(user: user)));
   }
 
   void signOut(context) {

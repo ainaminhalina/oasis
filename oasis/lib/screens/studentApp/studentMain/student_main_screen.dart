@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:oasis/screens/studentApp/home/home_view.dart';
+import 'package:oasis/screens/studentApp/home/student_home_view.dart';
 
 // import 'package:motokar/screens/explore/explore_view.dart';
 // import 'package:motokar/screens/trips/trips_view.dart';
 // import 'package:motokar/screens/garage/garage_view.dart';
-import 'package:oasis/screens/studentApp/profile/profile_view.dart';
+import 'package:oasis/screens/studentApp/profile/student_profile_view.dart';
 
 class StudentMainScreen extends StatefulWidget {
   StudentMainScreen({this.tab});
@@ -30,17 +30,17 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
     super.initState();
     selectedIndex = widget.tab;
     if (selectedIndex == 0) {
-      currentScreen = HomeView();
+      currentScreen = StudentHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = HomeView();
+      currentScreen = StudentHomeView();
     }
     if (selectedIndex == 2) {
-      currentScreen = HomeView();
+      currentScreen = StudentHomeView();
     }
 
     if (selectedIndex == 3) {
-      currentScreen = ProfileView();
+      currentScreen = StudentProfileView();
     }
   }
 
@@ -87,17 +87,17 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
     selectedIndex = index;
 
     if (selectedIndex == 0) {
-      currentScreen = HomeView();
+      currentScreen = StudentHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = HomeView();
+      currentScreen = StudentHomeView();
     }
     if (selectedIndex == 2) {
-      currentScreen = HomeView();
+      currentScreen = StudentHomeView();
     }
 
     if (selectedIndex == 3) {
-      currentScreen = ProfileView();
+      currentScreen = StudentProfileView();
     }
   }
 }
