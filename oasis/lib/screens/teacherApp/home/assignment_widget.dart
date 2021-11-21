@@ -1,18 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:oasis/models/teachersubjectclassroom.dart';
 import 'package:oasis/models/user.dart';
 import 'package:oasis/models/subject.dart';
-import 'package:oasis/models/classroom.dart';
+import 'package:oasis/models/assignment.dart';
 import 'package:oasis/screens/shared/colors.dart';
-import 'package:oasis/screens/teacherApp/home/subject_view.dart';
 
-class SubjectWidget extends StatelessWidget {
-  final Subject subject;
-  final Classroom classroom;
-  final TeacherSubjectClassroom teachersubjectclassroom;
+class AssignmentWidget extends StatelessWidget {
+  AssignmentWidget({this.assignment});
 
-  SubjectWidget({this.subject, this.classroom, this.teachersubjectclassroom});
+  final Assignment assignment;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +25,11 @@ class SubjectWidget extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 10.5),
         child: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SubjectView(
-                          subject: subject,
-                          classroom: classroom,
-                          teachersubjectclassroom: teachersubjectclassroom)));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => BookVehicleView(
+              //             vehicle: vehicle, vehicleProfile: vehicleProfile)));
             },
             child: Column(
               children: [
@@ -49,7 +43,7 @@ class SubjectWidget extends StatelessWidget {
                 ListTile(
                   dense: true,
                   title: Text(
-                    subject.title,
+                    assignment.startDate + ' - ' + assignment.endDate,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 15.0,
@@ -61,7 +55,7 @@ class SubjectWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          classroom.name,
+                          assignment.title,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 15.0,
