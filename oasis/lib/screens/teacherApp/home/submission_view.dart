@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:oasis/screens/teacherApp/home/assignment_widget.dart';
-import 'package:oasis/screens/teacherApp/home/addAssignment_view.dart';
+import 'package:oasis/models/assignment.dart';
+import 'package:oasis/models/submission.dart';
 import 'package:oasis/services/authentication_service.dart';
 import 'package:oasis/services/user_service.dart';
 import 'package:stacked/stacked.dart';
@@ -11,20 +11,26 @@ import 'package:provider/provider.dart';
 import '../../shared/my_toast.dart';
 import '../../shared/colors.dart';
 import 'package:oasis/screens/shared/appBar.dart';
+import 'package:oasis/screens/teacherApp/home/submission_widget.dart';
 
 import 'teacher_home_viewmodel.dart';
 
-class SubjectView extends StatefulWidget {
-  SubjectView({this.subject, this.classroom, this.teachersubjectclassroom});
+class SubmissionView extends StatefulWidget {
+  SubmissionView(
+      {this.subject,
+      this.classroom,
+      this.teachersubjectclassroom,
+      this.assignment});
   final Subject subject;
   final Classroom classroom;
   final TeacherSubjectClassroom teachersubjectclassroom;
+  final Assignment assignment;
 
   @override
-  _SubjectViewState createState() => _SubjectViewState();
+  _SubmissionViewState createState() => _SubmissionViewState();
 }
 
-class _SubjectViewState extends State<SubjectView> {
+class _SubmissionViewState extends State<SubmissionView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<TeacherHomeViewModel>.reactive(
@@ -32,11 +38,10 @@ class _SubjectViewState extends State<SubjectView> {
       viewModelBuilder: () => TeacherHomeViewModel(),
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
-        appBar: buildAppBar(
-            context, widget.subject.title + ' ' + widget.classroom.name),
+        appBar: buildAppBar(context, widget.assignment.title + ' Submissions'),
         body: model.isBusy
             ? Center(child: CircularProgressIndicator())
-            : model.empty2
+            : model.empty3
                 ? Column(
                     children: [
                       Expanded(child: Center(child: Text('No Data'))),
@@ -46,20 +51,23 @@ class _SubjectViewState extends State<SubjectView> {
                     children: [
                       Expanded(
                         child: ListView.builder(
-                          itemCount: model.assignmentList == null
+                          itemCount: model.submissionList == null
                               ? 1
-                              : model.assignmentList.length,
+                              : model.submissionList.length,
                           itemBuilder: (context, index) {
-                            final assignment = model.assignmentList[index];
+                            final submission = model.submissionList[index];
 
-                            if (assignment.teachersubjectclassroomID ==
-                                widget.teachersubjectclassroom.id) {
-                              return AssignmentWidget(
+                            if (submission.assignmentID ==
+                                widget.assignment.id) {
+                              return SubmissionWidget(
                                   subject: widget.subject,
                                   classroom: widget.classroom,
                                   teachersubjectclassroom:
                                       widget.teachersubjectclassroom,
-                                  assignment: assignment);
+                                  submission: submission,
+                                  studentName: model
+                                      .getCurrentUser(submission.studentID)
+                                      .displayName);
                             } else {
                               return Container();
                             }
@@ -68,17 +76,17 @@ class _SubjectViewState extends State<SubjectView> {
                       ),
                     ],
                   ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: accentColor,
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => AddAssignmentView(
-                    subject: widget.subject,
-                    classroom: widget.classroom,
-                    teachersubjectclassroom: widget.teachersubjectclassroom)));
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   child: Icon(Icons.add),
+        //   backgroundColor: accentColor,
+        //   onPressed: () {
+        //     Navigator.of(context).push(MaterialPageRoute(
+        //         builder: (context) => AddAssignmentView(
+        //             subject: widget.subject,
+        //             classroom: widget.classroom,
+        //             teachersubjectclassroom: widget.teachersubjectclassroom)));
+        //   },
+        // ),
       ),
     );
   }

@@ -42,6 +42,24 @@ class AssignmentService {
     );
   }
 
+  Future<Assignment> updateAssignment(
+      {String id,
+      String title,
+      String desc,
+      String startDate,
+      String endDate,
+      String file}) async {
+    final json = await Rest.patch('assignments/$id', data: {
+      'title': title,
+      'desc': desc,
+      'startDate': startDate,
+      'endDate': endDate,
+      'file': file
+    });
+
+    return Assignment.fromJson(json);
+  }
+
   Future<List<Assignment>> getAssignmentByTeacherSubjectClassroomID(
       String teachersubjectclassroomID) async {
     QuerySnapshot snapshots = await _assignmentsRef

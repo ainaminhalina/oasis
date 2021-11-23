@@ -2,15 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-Container awesomeTextField(
-  TextEditingController controller,
-  String hintText,
-  int minLines,
-  int maxLines,
-  double width,
-  TextInputType type,
-  String error,
-) {
+Container awesomeTextField(TextEditingController controller, String hintText,
+    int minLines, int maxLines, double width, TextInputType type, String error,
+    {bool readOnly = false}) {
   return Container(
     width: width,
     child: TextFormField(
@@ -25,6 +19,7 @@ Container awesomeTextField(
       keyboardType: type,
       minLines: minLines,
       maxLines: maxLines,
+      readOnly: readOnly,
       style: TextStyle(
           color: Colors.black54, fontSize: 13.0, fontWeight: FontWeight.w500),
       decoration: InputDecoration(
@@ -82,5 +77,3 @@ Container awesomeTextFieldNoError(
     ),
   );
 }
-
-

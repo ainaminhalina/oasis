@@ -1,28 +1,34 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:oasis/models/classroom.dart';
+import 'package:oasis/models/submission.dart';
 import 'package:oasis/models/teachersubjectclassroom.dart';
 import 'package:oasis/models/user.dart';
 import 'package:oasis/models/subject.dart';
-import 'package:oasis/models/classroom.dart';
 import 'package:oasis/screens/shared/colors.dart';
-import 'package:oasis/screens/teacherApp/home/subject_view.dart';
 
-class SubjectWidget extends StatelessWidget {
+class SubmissionWidget extends StatelessWidget {
+  SubmissionWidget(
+      {this.subject,
+      this.classroom,
+      this.teachersubjectclassroom,
+      this.submission,
+      this.studentName});
+
   final Subject subject;
   final Classroom classroom;
   final TeacherSubjectClassroom teachersubjectclassroom;
-
-  SubjectWidget({this.subject, this.classroom, this.teachersubjectclassroom});
+  final Submission submission;
+  final String studentName;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Padding(
         padding: const EdgeInsets.only(
-            left: 20.0, right: 20.0, top: 15.0, bottom: 3.0),
+            left: 20.0, right: 20.0, bottom: 3.0, top: 15.0),
         child: Container(
           decoration: BoxDecoration(
-            // color: Colors.grey[200],
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
@@ -59,13 +65,14 @@ class SubjectWidget extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 10.5),
           child: InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SubjectView(
-                            subject: subject,
-                            classroom: classroom,
-                            teachersubjectclassroom: teachersubjectclassroom)));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => ViewAssignmentView(
+                //             subject: subject,
+                //             classroom: classroom,
+                //             teachersubjectclassroom: teachersubjectclassroom,
+                //             assignment: assignment)));
               },
               child: Column(
                 children: [
@@ -79,7 +86,7 @@ class SubjectWidget extends StatelessWidget {
                   ListTile(
                     dense: true,
                     title: Text(
-                      subject.title,
+                      studentName,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 15.0,
@@ -91,7 +98,7 @@ class SubjectWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            classroom.name,
+                            submission.submitDate,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15.0,

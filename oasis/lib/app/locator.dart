@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:oasis/services/assignment_service.dart';
 import 'package:oasis/services/authentication_service.dart';
+import 'package:oasis/services/submission_service.dart';
 import 'package:oasis/services/user_service.dart';
 import 'package:oasis/services/subject_service.dart';
 import 'package:oasis/services/classroom_service.dart';
@@ -22,6 +23,7 @@ void initializeLocator() {
   locator.registerLazySingleton(() => ClassroomService());
   locator.registerLazySingleton(() => TeacherSubjectClassroomService());
   locator.registerLazySingleton(() => AssignmentService());
+  locator.registerLazySingleton(() => SubmissionService());
 
   locator.registerLazySingleton(() => SignInViewModel());
   locator.registerLazySingleton(() => SignUpViewModel());
