@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:oasis/screens/studentApp/chat/student_chat_view.dart';
 
 import 'package:oasis/screens/studentApp/home/student_home_view.dart';
-
-// import 'package:motokar/screens/explore/explore_view.dart';
-// import 'package:motokar/screens/trips/trips_view.dart';
-// import 'package:motokar/screens/garage/garage_view.dart';
+import 'package:oasis/screens/studentApp/notification/student_notification_view.dart';
 import 'package:oasis/screens/studentApp/profile/student_profile_view.dart';
+import 'package:oasis/screens/studentApp/result/result_view.dart';
 
 class StudentMainScreen extends StatefulWidget {
   StudentMainScreen({this.tab});
@@ -33,13 +32,15 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
       currentScreen = StudentHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = StudentHomeView();
+      currentScreen = ResultView();
     }
     if (selectedIndex == 2) {
-      currentScreen = StudentHomeView();
+      currentScreen = StudentChatView();
     }
-
     if (selectedIndex == 3) {
+      currentScreen = StudentNotificationView();
+    }
+    if (selectedIndex == 4) {
       currentScreen = StudentProfileView();
     }
   }
@@ -54,26 +55,28 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
 
   BottomNavigationBar _buildTabBar() {
     return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'HOME',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.add_task),
-          label: 'TASKS',
+          icon: Icon(Icons.school),
+          label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.pages),
-          label: 'RESULTS',
+          label: '',
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.chat),
-        //   label: 'CHAT',
-        // ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.chat),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications),
+          label: '',
+        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'PROFILE',
+          label: '',
         ),
       ],
       currentIndex: selectedIndex,
@@ -90,13 +93,15 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
       currentScreen = StudentHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = StudentHomeView();
+      currentScreen = ResultView();
     }
     if (selectedIndex == 2) {
-      currentScreen = StudentHomeView();
+      currentScreen = StudentChatView();
     }
-
     if (selectedIndex == 3) {
+      currentScreen = StudentNotificationView();
+    }
+    if (selectedIndex == 4) {
       currentScreen = StudentProfileView();
     }
   }

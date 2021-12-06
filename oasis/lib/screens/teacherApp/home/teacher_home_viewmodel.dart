@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:oasis/api/firebase_api.dart';
+import 'package:path/path.dart';
 import 'package:oasis/app/locator.dart';
 import 'package:oasis/models/submission.dart';
 import 'package:oasis/models/user.dart';
@@ -72,32 +77,84 @@ class TeacherHomeViewModel extends ViewModel {
       startDate,
       endDate,
       teachersubjectclassroomID,
-      file}) async {
+      File file}) async {
     setBusy(true);
 
-    Assignment assignment = Assignment(
-        title: title,
-        desc: desc,
-        startDate: startDate,
-        endDate: endDate,
-        teachersubjectclassroomID: teachersubjectclassroomID,
-        file: file);
+    if (file != null) {
+      final fileName = basename(file.path);
+      final destination = 'files/$fileName';
 
-    await _assignmentService.createAssignment(assignment);
+      UploadTask task = FirebaseApi.uploadFile(destination, file);
+
+      String fileUrl = '';
+
+      if (task != null) {
+        final snapshot = await task.whenComplete(() => {});
+        fileUrl = await snapshot.ref.getDownloadURL();
+      }
+
+      Assignment assignment = Assignment(
+          title: title,
+          desc: desc,
+          startDate: startDate,
+          endDate: endDate,
+          teachersubjectclassroomID: teachersubjectclassroomID,
+          file: fileUrl);
+
+      await _assignmentService.createAssignment(assignment);
+    } else {
+      Assignment assignment = Assignment(
+          title: title,
+          desc: desc,
+          startDate: startDate,
+          endDate: endDate,
+          teachersubjectclassroomID: teachersubjectclassroomID,
+          file: '');
+
+      await _assignmentService.createAssignment(assignment);
+    }
 
     setBusy(false);
   }
 
-  void updateAssignment({id, title, desc, startDate, endDate, file}) async {
+  void updateAssignment({id, title, desc, startDate, endDate, File file}) async {
     setBusy(true);
 
-    await _assignmentService.updateAssignment(
-        id: id,
+    if (file != null) {
+      final fileName = basename(file.path);
+      final destination = 'files/$fileName';
+
+      UploadTask task = FirebaseApi.uploadFile(destination, file);
+
+      String fileUrl = '';
+
+      if (task != null) {
+        final snapshot = await task.whenComplete(() => {});
+        fileUrl = await snapshot.ref.getDownloadURL();
+      }
+
+      await _assignmentService.updateAssignment(id: id,
         title: title,
         desc: desc,
         startDate: startDate,
         endDate: endDate,
-        file: file);
+        file: fileUrl);
+    } else {
+
+      await _assignmentService.updateAssignment(id: id,
+        title: title,
+        desc: desc,
+        startDate: startDate,
+        endDate: endDate);
+    }
+
+    setBusy(false);
+  }
+
+  void evaluateSubmission({id, tp}) async {
+    setBusy(true);
+
+    await _submissionService.evaluateSubmission(id: id, tp: tp);
 
     setBusy(false);
   }

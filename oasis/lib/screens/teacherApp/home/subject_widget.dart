@@ -67,56 +67,36 @@ class SubjectWidget extends StatelessWidget {
                             classroom: classroom,
                             teachersubjectclassroom: teachersubjectclassroom)));
               },
-              child: Column(
+              child: Row(
                 children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  //   child: (vehicle.vehiclePicture != null &&
-                  //           vehicle.vehiclePicture != '')
-                  //       ? Image.network(vehicle.vehiclePicture)
-                  //       : Image.asset('assets/images/car.png'),
-                  // ),
-                  ListTile(
-                    dense: true,
-                    title: Text(
-                      subject.title,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    subtitle: Container(
-                      padding: EdgeInsets.only(top: 4.0, bottom: 4.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            classroom.name,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          // Text(
-                          //   vehicleProfile.displayName,
-                          //   style: TextStyle(
-                          //       color: Colors.white,
-                          //       fontSize: 13.5,
-                          //       fontWeight: FontWeight.w400),
-                          // ),
-                          // SizedBox(height: 8.5),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       vehicle.description,
-                          //       style: TextStyle(
-                          //           color: Colors.white,
-                          //           fontSize: 13.0,
-                          //           fontWeight: FontWeight.w500),
-                          //     ),
-                          //   ],
-                          // ),
-                        ],
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Image.asset('assets/images/blackboard.png', width: 45),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      dense: true,
+                      title: Text(
+                        subject.title,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      subtitle: Container(
+                        padding: EdgeInsets.only(top: 4.0, bottom: 4.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              classroom.name,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

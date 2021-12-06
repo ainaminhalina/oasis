@@ -24,7 +24,7 @@ class _TeacherHomeViewState extends State<TeacherHomeView> {
       viewModelBuilder: () => TeacherHomeViewModel(),
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
-        appBar: buildAppBar(context, 'Home'),
+        appBar: buildAppBar(context, 'Classes'),
         body: model.isBusy
             ? Center(child: CircularProgressIndicator())
             : model.empty

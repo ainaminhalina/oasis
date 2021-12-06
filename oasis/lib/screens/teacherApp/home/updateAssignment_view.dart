@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:path/path.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:oasis/models/assignment.dart';
 import 'package:oasis/models/classroom.dart';
@@ -43,21 +45,7 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // File _imageFile;
-
-  // Future<void> _pickImage(ImageSource source) async {
-  //   PickedFile selected = await ImagePicker().getImage(source: source);
-
-  //   setState(() {
-  //     _imageFile = File(selected.path);
-  //   });
-  // }
-
-  // void _clear() {
-  //   setState(() {
-  //     _imageFile = null;
-  //   });
-  // }
+  File file;
 
   @override
   void initState() {
@@ -79,7 +67,7 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
       disposeViewModel: false,
       viewModelBuilder: () => TeacherHomeViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: buildSectionBar(context, 'Update Assignment'),
+        appBar: buildSectionBar(context, 'Edit Assignment'),
         body: Stack(
           children: [
             Container(
@@ -215,15 +203,35 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                                 fontSize: 18),
                           ),
                           SizedBox(height: 5),
+                          Row(
+                            children: [
                           awesomeTextField(
                             fileController,
-                            'Tap to enter assignment file...',
+                            'No file selected...',
                             1,
                             10,
-                            screenWidth,
+                            screenWidth / 1.5,
                             TextInputType.multiline,
                             'file',
+                            readOnly: true,
                           ),
+                          transparentButton("Browse", () async {
+                                final result = await FilePicker.platform
+                                    .pickFiles(allowMultiple: false);
+
+                                if (result == null) return;
+                                final path = result.files.single.path;
+
+                                setState(() => file = File(path));
+
+                                fileController.text = basename(file.path);
+                              },
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  screenWidth / 4,
+                                  textColor: Colors.white),
+                            ],
+                          ), 
                         ],
                       ),
                     ),
@@ -240,7 +248,7 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                             desc: descController.text.toString(),
                             startDate: startDateController.text.toString(),
                             endDate: endDateController.text.toString(),
-                            file: fileController.text.toString(),
+                            file: file,
                           );
                           await Future.delayed(Duration(seconds: 1));
                           awesomeToast('Assignment Updated!');

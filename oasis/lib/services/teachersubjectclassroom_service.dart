@@ -35,4 +35,14 @@ class TeacherSubjectClassroomService {
         .map((snapshot) => TeacherSubjectClassroom.fromSnapshot(snapshot))
         .toList();
   }
+
+  Future<List<TeacherSubjectClassroom>>
+      getTeacherSubjectClassroomsByClassroomID(String classroomID) async {
+    QuerySnapshot snapshots = await _teachersubjectclassroomRef
+        .where('classroomID', isEqualTo: classroomID)
+        .get();
+    return snapshots.docs
+        .map((snapshot) => TeacherSubjectClassroom.fromSnapshot(snapshot))
+        .toList();
+  }
 }

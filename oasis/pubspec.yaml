@@ -42,6 +42,10 @@ dependencies:
   image_picker: ^0.8.2
   image_cropper: ^1.3.1
   cached_network_image: ^2.5.0
+  file_picker: ^4.2.4
+  dio: ^4.0.4
+  path_provider: ^2.0.4
+  open_file: ^3.2.1
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +66,10 @@ flutter:
   assets:
     - assets/images/oasis_logo.png
     - assets/images/profile.png
+    - assets/images/doc.jpeg
+    - assets/images/google-docs.png
+    - assets/images/blackboard.png
+    - assets/images/assignment.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

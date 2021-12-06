@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:oasis/screens/teacherApp/chat/teacher_chat_view.dart';
 
 import 'package:oasis/screens/teacherApp/home/teacher_home_view.dart';
+import 'package:oasis/screens/teacherApp/notification/teacher_notification_view.dart';
 import 'package:oasis/screens/teacherApp/profile/teacher_profile_view.dart';
+import 'package:oasis/screens/teacherApp/report/report_view.dart';
 
 class TeacherMainScreen extends StatefulWidget {
   TeacherMainScreen({this.tab});
@@ -29,13 +32,15 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
       currentScreen = TeacherHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = TeacherProfileView();
+      currentScreen = ReportView();
     }
     if (selectedIndex == 2) {
-      currentScreen = TeacherProfileView();
+      currentScreen = TeacherChatView();
     }
-
     if (selectedIndex == 3) {
+      currentScreen = TeacherNotificationView();
+    }
+    if (selectedIndex == 4) {
       currentScreen = TeacherProfileView();
     }
   }
@@ -50,26 +55,28 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
 
   BottomNavigationBar _buildTabBar() {
     return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'HOME',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.add_task),
-          label: 'TASKS',
+          icon: Icon(Icons.school),
+          label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.pages),
-          label: 'REPORTS',
+          label: '',
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.chat),
-        //   label: 'CHAT',
-        // ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.chat),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications),
+          label: '',
+        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'PROFILE',
+          label: '',
         ),
       ],
       currentIndex: selectedIndex,
@@ -86,13 +93,15 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
       currentScreen = TeacherHomeView();
     }
     if (selectedIndex == 1) {
-      currentScreen = TeacherProfileView();
+      currentScreen = ReportView();
     }
     if (selectedIndex == 2) {
-      currentScreen = TeacherProfileView();
+      currentScreen = TeacherChatView();
     }
-
     if (selectedIndex == 3) {
+      currentScreen = TeacherNotificationView();
+    }
+    if (selectedIndex == 4) {
       currentScreen = TeacherProfileView();
     }
   }

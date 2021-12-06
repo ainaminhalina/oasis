@@ -4,15 +4,16 @@ import 'package:path/path.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:oasis/models/assignment.dart';
+import 'package:oasis/models/submission.dart';
 import 'package:oasis/models/classroom.dart';
 import 'package:oasis/models/subject.dart';
 import 'package:oasis/models/teachersubjectclassroom.dart';
 import 'package:oasis/screens/teacherApp/home/subject_view.dart';
 import 'package:oasis/screens/teacherApp/home/submission_view.dart';
 import 'package:oasis/screens/teacherApp/home/updateAssignment_view.dart';
-import 'package:stacked/stacked.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:stacked/stacked.dart';
 import 'package:oasis/screens/shared/appBar.dart';
 import 'package:oasis/screens/shared/textField.dart';
 import 'package:oasis/screens/shared/buttons.dart';
@@ -24,28 +25,31 @@ import 'package:image_picker/image_picker.dart';
 
 import 'teacher_home_viewmodel.dart';
 
-class ViewAssignmentView extends StatefulWidget {
-  const ViewAssignmentView(
+class ViewSubmissionView extends StatefulWidget {
+  const ViewSubmissionView(
       {this.subject,
       this.classroom,
       this.teachersubjectclassroom,
-      this.assignment});
+      this.assignment,
+      this.submission,
+      this.studentName});
 
   final Subject subject;
   final Classroom classroom;
   final TeacherSubjectClassroom teachersubjectclassroom;
   final Assignment assignment;
+  final Submission submission;
+  final String studentName;
 
   @override
-  _ViewAssignmentViewState createState() => _ViewAssignmentViewState();
+  _ViewSubmissionViewState createState() => _ViewSubmissionViewState();
 }
 
-class _ViewAssignmentViewState extends State<ViewAssignmentView> {
-  TextEditingController titleController = TextEditingController();
-  TextEditingController descController = TextEditingController();
-  TextEditingController startDateController = TextEditingController();
-  TextEditingController endDateController = TextEditingController();
+class _ViewSubmissionViewState extends State<ViewSubmissionView> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
   TextEditingController fileController = TextEditingController();
+  TextEditingController tpController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -68,12 +72,10 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
   @override
   void initState() {
     super.initState();
-    titleController = TextEditingController(text: widget.assignment.title);
-    descController = TextEditingController(text: widget.assignment.desc);
-    startDateController =
-        TextEditingController(text: widget.assignment.startDate);
-    endDateController = TextEditingController(text: widget.assignment.endDate);
-    fileController = TextEditingController(text: widget.assignment.file);
+    nameController = TextEditingController(text: widget.studentName);
+    dateController = TextEditingController(text: widget.submission.submitDate);
+    fileController = TextEditingController(text: widget.submission.file);
+    tpController = TextEditingController(text: widget.submission.tp);
   }
 
   @override
@@ -85,7 +87,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
       disposeViewModel: false,
       viewModelBuilder: () => TeacherHomeViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: buildSectionBar(context, widget.assignment.title),
+        appBar: buildSectionBar(context, widget.studentName + ' Submission'),
         body: Stack(
           children: [
             Container(
@@ -102,7 +104,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Title:',
+                            'Student name:',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400,
@@ -110,13 +112,13 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                           ),
                           SizedBox(height: 5),
                           awesomeTextField(
-                            titleController,
-                            'Tap to enter assignment title...',
+                            nameController,
+                            'Tap to enter student name...',
                             1,
                             10,
                             screenWidth,
                             TextInputType.multiline,
-                            'title',
+                            'name',
                             readOnly: true,
                           ),
                         ],
@@ -131,7 +133,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Description:',
+                            'Submitted Date:',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400,
@@ -139,71 +141,13 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                           ),
                           SizedBox(height: 5),
                           awesomeTextField(
-                            descController,
-                            'Tap to enter assignment description...',
-                            6,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'description',
-                            readOnly: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                    awesomeDivider(0.8, dividerColor),
-                    Container(
-                      padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
-                      width: screenWidth,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Start Date:',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
-                          ),
-                          SizedBox(height: 5),
-                          awesomeTextField(
-                            startDateController,
-                            'Tap to enter assignment start date...',
+                            dateController,
+                            'Tap to enter submitted date...',
                             1,
                             10,
                             screenWidth,
                             TextInputType.multiline,
-                            'start date',
-                            readOnly: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                    awesomeDivider(0.8, dividerColor),
-                    Container(
-                      padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
-                      width: screenWidth,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'End Date:',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
-                          ),
-                          SizedBox(height: 5),
-                          awesomeTextField(
-                            endDateController,
-                            'Tap to enter assignment end date...',
-                            1,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'end date',
+                            'date',
                             readOnly: true,
                           ),
                         ],
@@ -212,74 +156,93 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                     awesomeDivider(0.8, dividerColor),
                     InkWell(
                       child: Container(
-                        padding: EdgeInsets.only(
-                            top: 15, bottom: 20, left: 15, right: 15),
-                        width: screenWidth,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'File:',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18),
-                            ),
-                            SizedBox(height: 5),
-                            awesomeTextField(
-                              fileController,
-                              'No assignment...',
-                              1,
-                              10,
-                              screenWidth,
-                              TextInputType.multiline,
-                              'file',
-                              readOnly: true,
-                            ),
-                          ],
-                        ),
+                      padding: EdgeInsets.only(
+                          top: 15, bottom: 20, left: 15, right: 15),
+                      width: screenWidth,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'File:',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18),
+                          ),
+                          SizedBox(height: 5),
+                          awesomeTextField(
+                            fileController,
+                            'No submission...',
+                            1,
+                            10,
+                            screenWidth,
+                            TextInputType.multiline,
+                            'file',
+                            readOnly: true,
+                          ),
+                        ],
                       ),
-                      onTap: () {
+                    ),
+                    onTap: () {
                         openFile(
-                          url: widget.assignment.file.toString(),
-                          fileName: widget.assignment.title.toString(),
+                          url: widget.submission.file.toString(),
+                          fileName: widget.studentName.toString(),
                         );
                       },
                     ),
+                    awesomeDivider(0.8, dividerColor),
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: 15, bottom: 20, left: 15, right: 15),
+                      width: screenWidth,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Tahap Penguasaan:',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18),
+                          ),
+                          SizedBox(height: 5),
+                          awesomeTextField(
+                            tpController,
+                            'Unevaluated',
+                            1,
+                            10,
+                            screenWidth,
+                            TextInputType.multiline,
+                            'tp',
+                            readOnly: false,
+                          ),
+                        ],
+                      ),
+                    ),
                     SizedBox(
                       height: 5,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(15),
-                      child: transparentButton("Edit Assignment", () async {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UpdateAssignmentView(
-                                    subject: widget.subject,
-                                    classroom: widget.classroom,
-                                    teachersubjectclassroom:
-                                        widget.teachersubjectclassroom,
-                                    assignment: widget.assignment)));
-                      }, Color.fromRGBO(2, 125, 229, 1),
-                          Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,
-                          textColor: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: transparentButton("View Submissions", () async {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SubmissionView(
-                                    subject: widget.subject,
-                                    classroom: widget.classroom,
-                                    teachersubjectclassroom:
-                                        widget.teachersubjectclassroom,
-                                    assignment: widget.assignment)));
+                      child: transparentButton("Evaluate Submission", () async {
+                        if (_formKey.currentState.validate()) {
+                          model.evaluateSubmission(
+                            id: widget.submission.id,
+                            tp: tpController.text.toString(),
+                          );
+                          await Future.delayed(Duration(seconds: 1));
+                          awesomeToast('Submission Evaluated!');
+                          Navigator.of(context, rootNavigator: true)
+                              .pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => SubmissionView(
+                                          subject: widget.subject,
+                                          classroom: widget.classroom,
+                                          teachersubjectclassroom:
+                                              widget.teachersubjectclassroom,
+                                          assignment: widget.assignment)),
+                                  (route) => false);
+                        }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,
                           textColor: Colors.white),

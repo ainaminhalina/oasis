@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:oasis/screens/shared/appBar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
 import '../../shared/my_toast.dart';
@@ -22,6 +23,7 @@ class _StudentHomeViewState extends State<StudentHomeView> {
         disposeViewModel: false,
         viewModelBuilder: () => StudentHomeViewModel(),
         builder: (context, model, child) => Scaffold(
+              appBar: buildAppBar(context, 'Classes'),
               body: ListView(
                 children: [
                   Container(
@@ -42,13 +44,13 @@ class _StudentHomeViewState extends State<StudentHomeView> {
                                         ),
                                       ),
                                       onTap: () async {
-                                        try {
-                                          model.signOut(context);
-                                          myToast('Signed Out');
-                                          return await _auth.signOut();
-                                        } catch (e) {
-                                          print(e.toString());
-                                        }
+                                        // try {
+                                        //   model.signOut(context);
+                                        //   myToast('Signed Out');
+                                        //   return await _auth.signOut();
+                                        // } catch (e) {
+                                        //   print(e.toString());
+                                        // }
                                       }),
                                   SizedBox(
                                     height: 40.0,

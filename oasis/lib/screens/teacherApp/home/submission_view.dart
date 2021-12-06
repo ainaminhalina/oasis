@@ -64,6 +64,7 @@ class _SubmissionViewState extends State<SubmissionView> {
                                   classroom: widget.classroom,
                                   teachersubjectclassroom:
                                       widget.teachersubjectclassroom,
+                                  assignment: widget.assignment,
                                   submission: submission,
                                   studentName: model
                                       .getCurrentUser(submission.studentID)

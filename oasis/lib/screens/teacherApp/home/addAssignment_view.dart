@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:path/path.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:oasis/models/classroom.dart';
 import 'package:oasis/models/subject.dart';
@@ -37,21 +40,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // File _imageFile;
-
-  // Future<void> _pickImage(ImageSource source) async {
-  //   PickedFile selected = await ImagePicker().getImage(source: source);
-
-  //   setState(() {
-  //     _imageFile = File(selected.path);
-  //   });
-  // }
-
-  // void _clear() {
-  //   setState(() {
-  //     _imageFile = null;
-  //   });
-  // }
+  File file;
 
   @override
   Widget build(BuildContext context) {
@@ -198,14 +187,34 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                 fontSize: 18),
                           ),
                           SizedBox(height: 5),
-                          awesomeTextField(
-                            fileController,
-                            'Tap to enter assignment file...',
-                            1,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'file',
+                          Row(
+                            children: [
+                              awesomeTextField(
+                                fileController,
+                                'No file selected...',
+                                1,
+                                10,
+                                screenWidth / 1.5,
+                                TextInputType.multiline,
+                                'file',
+                                readOnly: true,
+                              ),
+                              transparentButton("Browse", () async {
+                                final result = await FilePicker.platform
+                                    .pickFiles(allowMultiple: false);
+
+                                if (result == null) return;
+                                final path = result.files.single.path;
+
+                                setState(() => file = File(path));
+
+                                fileController.text = basename(file.path);
+                              },
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  screenWidth / 4,
+                                  textColor: Colors.white),
+                            ],
                           ),
                         ],
                       ),
@@ -224,7 +233,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                             endDate: endDateController.text.toString(),
                             teachersubjectclassroomID:
                                 widget.teachersubjectclassroom.id.toString(),
-                            file: fileController.text.toString(),
+                            file: file,
                           );
                           await Future.delayed(Duration(seconds: 1));
                           awesomeToast('Assignment Added!');

@@ -38,6 +38,7 @@ class SubmissionService {
         'assignmentID': submission.assignmentID,
         'submitDate': submission.submitDate,
         'file': submission.file,
+        'tp': submission.tp,
       },
     );
   }
@@ -50,5 +51,12 @@ class SubmissionService {
     return snapshots.docs
         .map((snapshot) => Submission.fromSnapshot(snapshot))
         .toList();
+  }
+
+  Future<Submission> evaluateSubmission({String id, String tp}) async {
+      final json = await Rest.patch('submissions/$id',
+          data: {'tp': tp,});
+
+      return Submission.fromJson(json);
   }
 }
