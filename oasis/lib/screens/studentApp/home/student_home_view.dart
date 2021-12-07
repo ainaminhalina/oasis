@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oasis/screens/shared/appBar.dart';
+import 'package:oasis/screens/studentApp/home/subject_widget.dart';
 import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
 import '../../shared/my_toast.dart';
@@ -20,54 +21,39 @@ class _StudentHomeViewState extends State<StudentHomeView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<StudentHomeViewModel>.reactive(
-        disposeViewModel: false,
-        viewModelBuilder: () => StudentHomeViewModel(),
-        builder: (context, model, child) => Scaffold(
-              appBar: buildAppBar(context, 'Classes'),
-              body: ListView(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                      child: Text(
-                                        'Sign Out',
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                      onTap: () async {
-                                        // try {
-                                        //   model.signOut(context);
-                                        //   myToast('Signed Out');
-                                        //   return await _auth.signOut();
-                                        // } catch (e) {
-                                        //   print(e.toString());
-                                        // }
-                                      }),
-                                  SizedBox(
-                                    height: 40.0,
-                                    child: Divider(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+      disposeViewModel: false,
+      viewModelBuilder: () => StudentHomeViewModel(),
+      onModelReady: (model) => model.initialise(),
+      builder: (context, model, child) => Scaffold(
+        appBar: buildAppBar(context, 'Classes'),
+        body: model.isBusy
+            ? Center(child: CircularProgressIndicator())
+            : model.empty
+                ? Column(
+                    children: [
+                      Expanded(child: Center(child: Text('No Data'))),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: model.teachersubjectclassroomList == null
+                              ? 1
+                              : model.teachersubjectclassroomList.length,
+                          itemBuilder: (context, index) {
+                            final tsc =
+                                model.teachersubjectclassroomList[index];
+                            return SubjectWidget(
+                                subject: model.getSubject(tsc.subjectID),
+                                // teacher: model.getCurrentUser(tsc.teacherID),
+                                teachersubjectclassroom: tsc);
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ));
+      ),
+    );
   }
 }

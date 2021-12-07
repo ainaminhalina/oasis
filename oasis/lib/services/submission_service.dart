@@ -53,10 +53,22 @@ class SubmissionService {
         .toList();
   }
 
-  Future<Submission> evaluateSubmission({String id, String tp}) async {
-      final json = await Rest.patch('submissions/$id',
-          data: {'tp': tp,});
+  Future<List<Submission>> getStudentSubmission(
+      String assignmentID, String studentID) async {
+    QuerySnapshot snapshots = await _submissionsRef
+        .where('assignmentID', isEqualTo: assignmentID)
+        .where('studentID', isEqualTo: studentID)
+        .get();
+    return snapshots.docs
+        .map((snapshot) => Submission.fromSnapshot(snapshot))
+        .toList();
+  }
 
-      return Submission.fromJson(json);
+  Future<Submission> evaluateSubmission({String id, String tp}) async {
+    final json = await Rest.patch('submissions/$id', data: {
+      'tp': tp,
+    });
+
+    return Submission.fromJson(json);
   }
 }
