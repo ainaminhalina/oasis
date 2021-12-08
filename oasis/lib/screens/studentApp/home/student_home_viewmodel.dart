@@ -1,5 +1,9 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:oasis/api/firebase_api.dart';
+import 'package:path/path.dart';
 import 'package:oasis/models/studentclassroom.dart';
 import 'package:oasis/services/assignment_service.dart';
 import 'package:oasis/services/studentclassroom_service.dart';
@@ -93,9 +97,11 @@ class StudentHomeViewModel extends ViewModel {
       return false;
     }
 
-    Submission mySubmission = submissionList.firstWhere((submission) =>
-        submission.assignmentID == assignmentID &&
-        submission.studentID == currentUser.id);
+    Submission mySubmission = submissionList.firstWhere(
+        (submission) =>
+            submission.assignmentID == assignmentID &&
+            submission.studentID == currentUser.id,
+        orElse: () => null);
 
     if (mySubmission == null) {
       return false;
@@ -104,6 +110,101 @@ class StudentHomeViewModel extends ViewModel {
     }
   }
 
-  Subject getSubmission(String submissionID) =>
-      submissionList.firstWhere((submission) => submission.id == submissionID);
+  Submission getSubmission(String assignmentID) => submissionList.firstWhere(
+      (submission) =>
+          submission.assignmentID == assignmentID &&
+          submission.studentID == currentUser.id,
+      orElse: () => null);
+
+  void createSubmission({assignmentID, File file}) async {
+    setBusy(true);
+
+    final fileName = basename(file.path);
+    final destination = 'files/$fileName';
+
+    UploadTask task = FirebaseApi.uploadFile(destination, file);
+
+    String fileUrl = '';
+
+    if (task != null) {
+      final snapshot = await task.whenComplete(() => {});
+      fileUrl = await snapshot.ref.getDownloadURL();
+    }
+
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd MMM yyyy');
+    String submitDate = formatter.format(now);
+
+    Submission submission = Submission(
+        studentID: currentUser.id,
+        assignmentID: assignmentID,
+        submitDate: submitDate,
+        file: fileUrl,
+        tp: "");
+
+    await _submissionService.createSubmission(submission);
+
+    setBusy(false);
+  }
+
+  void editSubmission({submissionID, File file}) async {
+    setBusy(true);
+
+    final fileName = basename(file.path);
+    final destination = 'files/$fileName';
+
+    UploadTask task = FirebaseApi.uploadFile(destination, file);
+
+    String fileUrl = '';
+
+    if (task != null) {
+      final snapshot = await task.whenComplete(() => {});
+      fileUrl = await snapshot.ref.getDownloadURL();
+    }
+
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd MMM yyyy');
+    String submitDate = formatter.format(now);
+
+    await _submissionService.updateSubmission(
+        id: submissionID, submitDate: submitDate, file: fileUrl);
+
+    setBusy(false);
+  }
+
+  void updateAssignment(
+      {id, title, desc, startDate, endDate, File file}) async {
+    setBusy(true);
+
+    if (file != null) {
+      final fileName = basename(file.path);
+      final destination = 'files/$fileName';
+
+      UploadTask task = FirebaseApi.uploadFile(destination, file);
+
+      String fileUrl = '';
+
+      if (task != null) {
+        final snapshot = await task.whenComplete(() => {});
+        fileUrl = await snapshot.ref.getDownloadURL();
+      }
+
+      await _assignmentService.updateAssignment(
+          id: id,
+          title: title,
+          desc: desc,
+          startDate: startDate,
+          endDate: endDate,
+          file: fileUrl);
+    } else {
+      await _assignmentService.updateAssignment(
+          id: id,
+          title: title,
+          desc: desc,
+          startDate: startDate,
+          endDate: endDate);
+    }
+
+    setBusy(false);
+  }
 }

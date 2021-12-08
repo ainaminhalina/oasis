@@ -43,6 +43,14 @@ class SubmissionService {
     );
   }
 
+  Future<Submission> updateSubmission(
+      {String id, String submitDate, String file}) async {
+    final json = await Rest.patch('submissions/$id',
+        data: {'submitDate': submitDate, 'file': file});
+
+    return Submission.fromJson(json);
+  }
+
   Future<List<Submission>> getSubmissionByAssignmentID(
       String assignmentID) async {
     QuerySnapshot snapshots = await _submissionsRef
