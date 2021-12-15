@@ -51,7 +51,7 @@ class UserService {
       String displayName,
       String phoneNumber,
       String profilePicture}) async {
-    if (profilePicture != null) {
+    if (profilePicture != null && profilePicture != '') {
       final json = await Rest.patch('users/$id', data: {
         'displayName': displayName,
         'phoneNumber': phoneNumber,

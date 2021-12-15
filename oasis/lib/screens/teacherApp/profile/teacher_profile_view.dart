@@ -31,9 +31,25 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                   SizedBox(
                     height: 30.0,
                   ),
-                  CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: AssetImage('assets/images/profile.png'),
+                  Container(
+                    width: 150,
+                    height: 150,
+                    child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: (model.currentUser.profilePicture == null ||
+                                model.currentUser.profilePicture == '')
+                            ? CircleAvatar(
+                                radius: 50.0,
+                                backgroundImage:
+                                    AssetImage('assets/images/profile.png'),
+                                backgroundColor: Colors.transparent,
+                              )
+                            : CircleAvatar(
+                                radius: 50.0,
+                                backgroundImage: NetworkImage(
+                                    model.currentUser.profilePicture),
+                                backgroundColor: Colors.transparent,
+                              )),
                   ),
                   SizedBox(
                     height: 10.0,

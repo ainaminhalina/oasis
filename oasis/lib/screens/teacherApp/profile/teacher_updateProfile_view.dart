@@ -31,7 +31,7 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  File _imageFile;
+  File _imageFile = null;
 
   Future<void> _pickImage(ImageSource source) async {
     PickedFile selected = await ImagePicker().getImage(source: source);
@@ -101,28 +101,31 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                               width: MediaQuery.of(context).size.width / 3,
                               height: MediaQuery.of(context).size.width / 3,
                               color: Colors.grey,
-                              child: _imageFile == null &&
-                                      (widget.user.profilePicture == '' ||
-                                          widget.user.profilePicture == null)
-                                  ? Icon(Icons.add_a_photo,
-                                      size: 50, color: Colors.white)
-                                  : _imageFile != null &&
-                                          (widget.user.profilePicture == '' ||
-                                              widget.user.profilePicture ==
-                                                  null)
-                                      ? Image.file(
-                                          _imageFile,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : CachedNetworkImage(
-                                          imageUrl: widget.user.profilePicture,
-                                          fit: BoxFit.fill,
-                                          placeholder: (context, url) => Center(
-                                              child:
-                                                  CircularProgressIndicator()),
-                                          errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
-                                        )),
+                              child: Icon(Icons.add_a_photo,
+                                  size: 50, color: Colors.white)
+                              // child: _imageFile == null &&
+                              //         (widget.user.profilePicture == '' ||
+                              //             widget.user.profilePicture == null)
+                              //     ? Icon(Icons.add_a_photo,
+                              //         size: 50, color: Colors.white)
+                              //     : _imageFile != null &&
+                              //             (widget.user.profilePicture == '' ||
+                              //                 widget.user.profilePicture ==
+                              //                     null)
+                              //         ? Image.file(
+                              //             _imageFile,
+                              //             fit: BoxFit.cover,
+                              //           )
+                              //         : CachedNetworkImage(
+                              //             imageUrl: widget.user.profilePicture,
+                              //             fit: BoxFit.fill,
+                              //             placeholder: (context, url) => Center(
+                              //                 child:
+                              //                     CircularProgressIndicator()),
+                              //             errorWidget: (context, url, error) =>
+                              //                 Icon(Icons.error),
+                              //           )
+                              ),
                         ),
                       ),
                       _imageFile != null
@@ -211,19 +214,21 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            TeacherMainScreen(tab: 3)));
+                                            TeacherMainScreen(tab: 4)));
                               });
-                            } else if (model.currentUser.profilePicture != '') {
-                              model.updateProfile(
-                                  displayName: displayNameController.text,
-                                  phoneNumber: phoneNumberController.text);
-                              await Future.delayed(Duration(seconds: 1));
-                              awesomeToast('Information Updated!');
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          TeacherMainScreen(tab: 3)));
-                            } else {
+                            }
+                            // else if (model.currentUser.profilePicture != '') {
+                            //   model.updateProfile(
+                            //       displayName: displayNameController.text,
+                            //       phoneNumber: phoneNumberController.text);
+                            //   await Future.delayed(Duration(seconds: 1));
+                            //   awesomeToast('Information Updated!');
+                            //   Navigator.of(context).pushReplacement(
+                            //       MaterialPageRoute(
+                            //           builder: (context) =>
+                            //               TeacherMainScreen(tab: 3)));
+                            // }
+                            else {
                               model.updateProfile(
                                 displayName: displayNameController.text,
                                 phoneNumber: phoneNumberController.text,
@@ -234,7 +239,7 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          TeacherMainScreen(tab: 3)));
+                                          TeacherMainScreen(tab: 4)));
                             }
                           }
                         }, Color.fromRGBO(2, 125, 229, 1),
