@@ -9,7 +9,7 @@ const assignmentsRouter = require("./api/controllers/assignments_controller");
 const submissionsRouter = require("./api/controllers/submissions_controller");
 const chatsRouter = require("./api/controllers/chats_controller");
 const notificationsRouter = require("./api/controllers/notifications_controller");
-const studentClassroomsRouter = require("./api/controllers/studentClassrooms_controller");
+const studentclassroomsRouter = require("./api/controllers/studentclassrooms_controller");
 
 app.use(express.json());
 app.use("/users", usersRouter);
@@ -20,7 +20,7 @@ app.use("/assignments", assignmentsRouter);
 app.use("/submissions", submissionsRouter);
 app.use("/chats", chatsRouter);
 app.use("/notifications", notificationsRouter);
-app.use("/studentclassrooms", studentClassroomsRouter);
+app.use("/studentclassrooms", studentclassroomsRouter);
 
 exports.api = functions.https.onRequest(app);
 

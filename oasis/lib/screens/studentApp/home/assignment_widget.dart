@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:oasis/models/classroom.dart';
+import 'package:oasis/models/submission.dart';
 import 'package:oasis/models/teachersubjectclassroom.dart';
 import 'package:oasis/models/user.dart';
 import 'package:oasis/models/subject.dart';
@@ -10,12 +11,17 @@ import 'package:oasis/screens/studentApp/home/viewAssignment_view.dart';
 
 class AssignmentWidget extends StatelessWidget {
   AssignmentWidget(
-      {this.subject, this.teachersubjectclassroom, this.assignment});
+      {this.subject,
+      this.teacher,
+      this.teachersubjectclassroom,
+      this.assignment,
+      this.submission});
 
   final Subject subject;
-  // final User teacher;
+  final User teacher;
   final TeacherSubjectClassroom teachersubjectclassroom;
   final Assignment assignment;
+  final Submission submission;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +47,11 @@ class AssignmentWidget extends StatelessWidget {
                 spreadRadius: 2.0,
               ), //BoxShadow
               BoxShadow(
-                color: Colors.white,
+                color: (submission == null)
+                    ? Colors.white
+                    : (submission.tp == "")
+                        ? Colors.yellow
+                        : Colors.green,
                 offset: const Offset(0.0, 0.0),
                 blurRadius: 0.0,
                 spreadRadius: 0.0,
@@ -66,7 +76,7 @@ class AssignmentWidget extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => ViewAssignmentView(
                             subject: subject,
-                            // teacher: teacher,
+                            teacher: teacher,
                             teachersubjectclassroom: teachersubjectclassroom,
                             assignment: assignment)));
               },

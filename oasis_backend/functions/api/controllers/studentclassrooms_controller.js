@@ -1,4 +1,4 @@
-const studentclassroomsModel = require("../models/classrooms_model");
+const studentclassroomsModel = require("../models/studentclassrooms_model");
 const express = require("express");
 const router = express.Router();
 

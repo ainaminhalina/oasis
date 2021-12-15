@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:oasis/models/user.dart';
 import 'package:oasis/screens/studentApp/home/assignment_widget.dart';
 import 'package:oasis/services/authentication_service.dart';
 import 'package:oasis/services/user_service.dart';
@@ -15,9 +15,9 @@ import 'package:oasis/screens/shared/appBar.dart';
 import 'student_home_viewmodel.dart';
 
 class SubjectView extends StatefulWidget {
-  SubjectView({this.subject, this.teachersubjectclassroom});
+  SubjectView({this.subject, this.teacher, this.teachersubjectclassroom});
   final Subject subject;
-  // final User teacher;
+  final User teacher;
   final TeacherSubjectClassroom teachersubjectclassroom;
 
   @override
@@ -55,10 +55,14 @@ class _SubjectViewState extends State<SubjectView> {
                                 widget.teachersubjectclassroom.id) {
                               return AssignmentWidget(
                                   subject: widget.subject,
-                                  // teacher: widget.teacher,
+                                  teacher: widget.teacher,
                                   teachersubjectclassroom:
                                       widget.teachersubjectclassroom,
-                                  assignment: assignment);
+                                  assignment: assignment,
+                                  submission:
+                                      (model.hasSubmission(assignment.id)
+                                          ? model.getSubmission(assignment.id)
+                                          : null));
                             } else {
                               return Container();
                             }

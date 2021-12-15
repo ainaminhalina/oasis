@@ -45,7 +45,7 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  File file;
+  File file = null;
 
   @override
   void initState() {
@@ -205,17 +205,17 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                           SizedBox(height: 5),
                           Row(
                             children: [
-                          awesomeTextField(
-                            fileController,
-                            'No file selected...',
-                            1,
-                            10,
-                            screenWidth / 1.5,
-                            TextInputType.multiline,
-                            'file',
-                            readOnly: true,
-                          ),
-                          transparentButton("Browse", () async {
+                              awesomeTextField(
+                                fileController,
+                                'No file selected...',
+                                1,
+                                10,
+                                screenWidth / 1.5,
+                                TextInputType.multiline,
+                                'file',
+                                readOnly: true,
+                              ),
+                              transparentButton("Browse", () async {
                                 final result = await FilePicker.platform
                                     .pickFiles(allowMultiple: false);
 
@@ -231,7 +231,7 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                                   screenWidth / 4,
                                   textColor: Colors.white),
                             ],
-                          ), 
+                          ),
                         ],
                       ),
                     ),
@@ -252,15 +252,16 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                           );
                           await Future.delayed(Duration(seconds: 1));
                           awesomeToast('Assignment Updated!');
-                          Navigator.of(context, rootNavigator: true)
-                              .pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => SubjectView(
-                                          subject: widget.subject,
-                                          classroom: widget.classroom,
-                                          teachersubjectclassroom:
-                                              widget.teachersubjectclassroom)),
-                                  (route) => false);
+                          // Navigator.of(context, rootNavigator: true)
+                          //     .pushAndRemoveUntil(
+                          //         MaterialPageRoute(
+                          //             builder: (context) => SubjectView(
+                          //                 subject: widget.subject,
+                          //                 classroom: widget.classroom,
+                          //                 teachersubjectclassroom:
+                          //                     widget.teachersubjectclassroom)),
+                          //         (route) => false);
+                          Navigator.of(context).pop();
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,

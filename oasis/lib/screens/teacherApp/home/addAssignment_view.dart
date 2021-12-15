@@ -237,15 +237,16 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                           );
                           await Future.delayed(Duration(seconds: 1));
                           awesomeToast('Assignment Added!');
-                          Navigator.of(context, rootNavigator: true)
-                              .pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => SubjectView(
-                                          subject: widget.subject,
-                                          classroom: widget.classroom,
-                                          teachersubjectclassroom:
-                                              widget.teachersubjectclassroom)),
-                                  (route) => false);
+                          // Navigator.of(context, rootNavigator: true)
+                          //     .pushAndRemoveUntil(
+                          //         MaterialPageRoute(
+                          //             builder: (context) => SubjectView(
+                          //                 subject: widget.subject,
+                          //                 classroom: widget.classroom,
+                          //                 teachersubjectclassroom:
+                          //                     widget.teachersubjectclassroom)),
+                          //         (route) => false);
+                          Navigator.of(context).pop();
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,

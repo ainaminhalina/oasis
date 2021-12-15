@@ -46,7 +46,7 @@ class _StudentHomeViewState extends State<StudentHomeView> {
                                 model.teachersubjectclassroomList[index];
                             return SubjectWidget(
                                 subject: model.getSubject(tsc.subjectID),
-                                // teacher: model.getCurrentUser(tsc.teacherID),
+                                teacher: model.getUser(tsc.teacherID),
                                 teachersubjectclassroom: tsc);
                           },
                         ),

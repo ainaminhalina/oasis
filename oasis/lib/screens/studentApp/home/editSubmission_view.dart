@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:oasis/models/assignment.dart';
 import 'package:oasis/models/submission.dart';
+import 'package:oasis/models/user.dart';
 import 'package:oasis/screens/studentApp/home/viewAssignment_view.dart';
 import 'package:oasis/screens/studentApp/home/viewSubmission_view.dart';
 import 'package:path/path.dart';
@@ -27,11 +28,12 @@ import 'student_home_viewmodel.dart';
 class EditSubmissionView extends StatefulWidget {
   const EditSubmissionView(
       {this.subject,
+      this.teacher,
       this.teachersubjectclassroom,
       this.assignment,
       this.submission});
   final Subject subject;
-  // final User teacher;
+  final User teacher;
   final TeacherSubjectClassroom teachersubjectclassroom;
   final Assignment assignment;
   final Submission submission;
@@ -45,7 +47,7 @@ class _EditSubmissionViewState extends State<EditSubmissionView> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  File file;
+  File file = null;
 
   @override
   Widget build(BuildContext context) {
@@ -125,17 +127,18 @@ class _EditSubmissionViewState extends State<EditSubmissionView> {
                           );
                           await Future.delayed(Duration(seconds: 1));
                           awesomeToast('Submission Resubmited!');
-                          Navigator.of(context, rootNavigator: true)
-                              .pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => ViewSubmissionView(
-                                          subject: widget.subject,
-                                          // teacher: widget.teacher,
-                                          teachersubjectclassroom:
-                                              widget.teachersubjectclassroom,
-                                          assignment: widget.assignment,
-                                          submission: widget.submission)),
-                                  (route) => false);
+                          // Navigator.of(context, rootNavigator: true)
+                          //     .pushAndRemoveUntil(
+                          //         MaterialPageRoute(
+                          //             builder: (context) => ViewSubmissionView(
+                          //                 subject: widget.subject,
+                          //                 teacher: widget.teacher,
+                          //                 teachersubjectclassroom:
+                          //                     widget.teachersubjectclassroom,
+                          //                 assignment: widget.assignment,
+                          //                 submission: widget.submission)),
+                          //         (route) => false);
+                          Navigator.of(context).pop();
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,

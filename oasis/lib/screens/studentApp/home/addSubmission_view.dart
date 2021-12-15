@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:oasis/models/assignment.dart';
+import 'package:oasis/models/user.dart';
 import 'package:oasis/screens/studentApp/home/viewAssignment_view.dart';
 import 'package:path/path.dart';
 import 'package:file_picker/file_picker.dart';
@@ -24,9 +25,12 @@ import 'student_home_viewmodel.dart';
 
 class AddSubmissionView extends StatefulWidget {
   const AddSubmissionView(
-      {this.subject, this.teachersubjectclassroom, this.assignment});
+      {this.subject,
+      this.teacher,
+      this.teachersubjectclassroom,
+      this.assignment});
   final Subject subject;
-  // final User teacher;
+  final User teacher;
   final TeacherSubjectClassroom teachersubjectclassroom;
   final Assignment assignment;
 
@@ -119,16 +123,17 @@ class _AddSubmissionViewState extends State<AddSubmissionView> {
                           );
                           await Future.delayed(Duration(seconds: 1));
                           awesomeToast('Submission Added!');
-                          Navigator.of(context, rootNavigator: true)
-                              .pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => ViewAssignmentView(
-                                          subject: widget.subject,
-                                          // teacher: widget.teacher,
-                                          teachersubjectclassroom:
-                                              widget.teachersubjectclassroom,
-                                          assignment: widget.assignment)),
-                                  (route) => false);
+                          // Navigator.of(context, rootNavigator: true)
+                          //     .pushAndRemoveUntil(
+                          //         MaterialPageRoute(
+                          //             builder: (context) => ViewAssignmentView(
+                          //                 subject: widget.subject,
+                          //                 teacher: widget.teacher,
+                          //                 teachersubjectclassroom:
+                          //                     widget.teachersubjectclassroom,
+                          //                 assignment: widget.assignment)),
+                          //         (route) => false);
+                          Navigator.of(context).pop();
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,

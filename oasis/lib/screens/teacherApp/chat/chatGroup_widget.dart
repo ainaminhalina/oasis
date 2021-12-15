@@ -1,18 +1,18 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:oasis/models/teachersubjectclassroom.dart';
-import 'package:oasis/models/user.dart';
-import 'package:oasis/models/subject.dart';
+import 'package:oasis/models/chat.dart';
 import 'package:oasis/models/classroom.dart';
+import 'package:oasis/models/subject.dart';
+import 'package:oasis/models/teachersubjectclassroom.dart';
 import 'package:oasis/screens/shared/colors.dart';
-import 'package:oasis/screens/studentApp/home/subject_view.dart';
+import 'package:oasis/screens/teacherApp/chat/chatting_view.dart';
 
-class SubjectWidget extends StatelessWidget {
+class ChatGroupWidget extends StatelessWidget {
+  ChatGroupWidget({this.subject, this.classroom, this.tsc, this.chatList});
+
   final Subject subject;
-  final User teacher;
-  final TeacherSubjectClassroom teachersubjectclassroom;
-
-  SubjectWidget({this.subject, this.teacher, this.teachersubjectclassroom});
+  final Classroom classroom;
+  final TeacherSubjectClassroom tsc;
+  final List<Chat> chatList;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class SubjectWidget extends StatelessWidget {
             left: 20.0, right: 20.0, top: 15.0, bottom: 3.0),
         child: Container(
           decoration: BoxDecoration(
-            // color: Colors.grey[200],
+            color: Colors.grey[200],
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
@@ -62,17 +62,17 @@ class SubjectWidget extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SubjectView(
+                        builder: (context) => ChattingView(
                             subject: subject,
-                            teacher: teacher,
-                            teachersubjectclassroom: teachersubjectclassroom)));
+                            classroom: classroom,
+                            tsc: tsc,
+                            chatList: chatList)));
               },
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child:
-                        Image.asset('assets/images/blackboard.png', width: 45),
+                    child: Image.asset('assets/images/chat.png', width: 45),
                   ),
                   Expanded(
                     child: ListTile(
@@ -90,7 +90,7 @@ class SubjectWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              teacher.displayName,
+                              classroom.name,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 15.0,

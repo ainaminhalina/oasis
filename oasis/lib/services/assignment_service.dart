@@ -49,15 +49,28 @@ class AssignmentService {
       String startDate,
       String endDate,
       String file}) async {
-    final json = await Rest.patch('assignments/$id', data: {
-      'title': title,
-      'desc': desc,
-      'startDate': startDate,
-      'endDate': endDate,
-      'file': file
-    });
+    if (file != null && file != '') {
+      print('me second');
+      final json = await Rest.patch('assignments/$id', data: {
+        'title': title,
+        'desc': desc,
+        'startDate': startDate,
+        'endDate': endDate,
+        'file': file
+      });
 
-    return Assignment.fromJson(json);
+      return Assignment.fromJson(json);
+    } else {
+      print('am here 2');
+      final json = await Rest.patch('assignments/$id', data: {
+        'title': title,
+        'desc': desc,
+        'startDate': startDate,
+        'endDate': endDate
+      });
+
+      return Assignment.fromJson(json);
+    }
   }
 
   Future<List<Assignment>> getAssignmentByTeacherSubjectClassroomID(

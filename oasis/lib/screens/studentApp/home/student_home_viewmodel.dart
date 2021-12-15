@@ -86,7 +86,7 @@ class StudentHomeViewModel extends ViewModel {
     setBusy(false);
   }
 
-  User getCurrentUser(String userID) =>
+  User getUser(String userID) =>
       userList.firstWhere((user) => user.id == userID);
 
   Subject getSubject(String subjectID) =>

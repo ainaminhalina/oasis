@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:oasis/models/user.dart';
 import 'package:oasis/screens/studentApp/home/addSubmission_view.dart';
 import 'package:oasis/screens/studentApp/home/viewSubmission_view.dart';
 import 'package:path/path.dart';
@@ -25,10 +26,13 @@ import 'student_home_viewmodel.dart';
 
 class ViewAssignmentView extends StatefulWidget {
   const ViewAssignmentView(
-      {this.subject, this.teachersubjectclassroom, this.assignment});
+      {this.subject,
+      this.teacher,
+      this.teachersubjectclassroom,
+      this.assignment});
 
   final Subject subject;
-  // final User teacher;
+  final User teacher;
   final TeacherSubjectClassroom teachersubjectclassroom;
   final Assignment assignment;
 
@@ -259,7 +263,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                                             builder: (context) =>
                                                 ViewSubmissionView(
                                                     subject: widget.subject,
-                                                    // teacher: widget.teacher,
+                                                    teacher: widget.teacher,
                                                     teachersubjectclassroom: widget
                                                         .teachersubjectclassroom,
                                                     assignment:
@@ -280,14 +284,13 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                AddSubmissionView(
-                                                    subject: widget.subject,
-                                                    // teacher: widget.teacher,
-                                                    teachersubjectclassroom: widget
-                                                        .teachersubjectclassroom,
-                                                    assignment:
-                                                        widget.assignment)));
+                                            builder: (context) => AddSubmissionView(
+                                                subject: widget.subject,
+                                                teacher: widget.teacher,
+                                                teachersubjectclassroom: widget
+                                                    .teachersubjectclassroom,
+                                                assignment:
+                                                    widget.assignment)));
                                   },
                                       Color.fromRGBO(2, 125, 229, 1),
                                       Color.fromRGBO(2, 125, 229, 1),

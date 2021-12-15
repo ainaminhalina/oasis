@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:oasis/models/user.dart';
 import 'package:oasis/screens/studentApp/home/editSubmission_view.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -30,11 +31,12 @@ import 'student_home_viewmodel.dart';
 class ViewSubmissionView extends StatefulWidget {
   const ViewSubmissionView(
       {this.subject,
+      this.teacher,
       this.teachersubjectclassroom,
       this.assignment,
       this.submission});
   final Subject subject;
-  // final User teacher;
+  final User teacher;
   final TeacherSubjectClassroom teachersubjectclassroom;
   final Assignment assignment;
   final Submission submission;
@@ -183,7 +185,7 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                                   MaterialPageRoute(
                                       builder: (context) => EditSubmissionView(
                                           subject: widget.subject,
-                                          // teacher: widget.teacher,
+                                          teacher: widget.teacher,
                                           teachersubjectclassroom:
                                               widget.teachersubjectclassroom,
                                           assignment: widget.assignment,

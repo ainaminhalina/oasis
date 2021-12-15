@@ -156,34 +156,34 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                     awesomeDivider(0.8, dividerColor),
                     InkWell(
                       child: Container(
-                      padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
-                      width: screenWidth,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'File:',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
-                          ),
-                          SizedBox(height: 5),
-                          awesomeTextField(
-                            fileController,
-                            'No submission...',
-                            1,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'file',
-                            readOnly: true,
-                          ),
-                        ],
+                        padding: EdgeInsets.only(
+                            top: 15, bottom: 20, left: 15, right: 15),
+                        width: screenWidth,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'File:',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18),
+                            ),
+                            SizedBox(height: 5),
+                            awesomeTextField(
+                              fileController,
+                              'No submission...',
+                              1,
+                              10,
+                              screenWidth,
+                              TextInputType.multiline,
+                              'file',
+                              readOnly: true,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    onTap: () {
+                      onTap: () {
                         openFile(
                           url: widget.submission.file.toString(),
                           fileName: widget.studentName.toString(),
@@ -232,16 +232,17 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                           );
                           await Future.delayed(Duration(seconds: 1));
                           awesomeToast('Submission Evaluated!');
-                          Navigator.of(context, rootNavigator: true)
-                              .pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => SubmissionView(
-                                          subject: widget.subject,
-                                          classroom: widget.classroom,
-                                          teachersubjectclassroom:
-                                              widget.teachersubjectclassroom,
-                                          assignment: widget.assignment)),
-                                  (route) => false);
+                          // Navigator.of(context, rootNavigator: true)
+                          //     .pushAndRemoveUntil(
+                          //         MaterialPageRoute(
+                          //             builder: (context) => SubmissionView(
+                          //                 subject: widget.subject,
+                          //                 classroom: widget.classroom,
+                          //                 teachersubjectclassroom:
+                          //                     widget.teachersubjectclassroom,
+                          //                 assignment: widget.assignment)),
+                          //         (route) => false);
+                          Navigator.of(context).pop();
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,

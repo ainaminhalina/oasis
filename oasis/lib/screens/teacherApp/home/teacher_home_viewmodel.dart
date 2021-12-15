@@ -117,10 +117,14 @@ class TeacherHomeViewModel extends ViewModel {
     setBusy(false);
   }
 
-  void updateAssignment({id, title, desc, startDate, endDate, File file}) async {
+  void updateAssignment(
+      {id, title, desc, startDate, endDate, File file}) async {
     setBusy(true);
 
-    if (file != null) {
+    print(file);
+
+    if (file != null && file != '') {
+      print('me first');
       final fileName = basename(file.path);
       final destination = 'files/$fileName';
 
@@ -133,19 +137,22 @@ class TeacherHomeViewModel extends ViewModel {
         fileUrl = await snapshot.ref.getDownloadURL();
       }
 
-      await _assignmentService.updateAssignment(id: id,
-        title: title,
-        desc: desc,
-        startDate: startDate,
-        endDate: endDate,
-        file: fileUrl);
+      print('me first v2');
+      await _assignmentService.updateAssignment(
+          id: id,
+          title: title,
+          desc: desc,
+          startDate: startDate,
+          endDate: endDate,
+          file: fileUrl);
     } else {
-
-      await _assignmentService.updateAssignment(id: id,
-        title: title,
-        desc: desc,
-        startDate: startDate,
-        endDate: endDate);
+      print('am here 1');
+      await _assignmentService.updateAssignment(
+          id: id,
+          title: title,
+          desc: desc,
+          startDate: startDate,
+          endDate: endDate);
     }
 
     setBusy(false);
