@@ -69,7 +69,7 @@ Container transparentButton(
           child: Text(text,
               style: TextStyle(
                   color: textColor != null ? textColor : bordercolor,
-                  fontSize: 19.0,
+                  fontSize: 17.0,
                   fontWeight: FontWeight.w700)),
         ),
       ),
