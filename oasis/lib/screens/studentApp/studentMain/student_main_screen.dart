@@ -60,7 +60,7 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.school),
-          label: 'Classes',
+          label: 'CLASSES',
         ),
         // BottomNavigationBarItem(
         //   icon: Icon(Icons.pages),
@@ -68,7 +68,7 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
         // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.chat),
-          label: 'Chat',
+          label: 'CHAT',
         ),
         // BottomNavigationBarItem(
         //   icon: Icon(Icons.notifications),
@@ -76,7 +76,7 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
         // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'Profile',
+          label: 'PROFILE',
         ),
       ],
       currentIndex: selectedIndex,

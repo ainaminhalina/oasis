@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -116,7 +117,6 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                         ],
                       ),
                     ),
-                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
                           top: 15, bottom: 20, left: 15, right: 15),
@@ -132,19 +132,43 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                 fontSize: 18),
                           ),
                           SizedBox(height: 5),
-                          awesomeTextField(
-                            startDateController,
-                            'Tap to enter assignment start date...',
-                            1,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'start date',
+                          Row(
+                            children: [
+                              awesomeTextField(
+                                startDateController,
+                                'Tap to enter assignment start date...',
+                                1,
+                                10,
+                                screenWidth / 1.5,
+                                TextInputType.multiline,
+                                'start date',
+                                readOnly: true,
+                              ),
+                              transparentButton(
+                                  "Select",
+                                  () async {
+                                    showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2001),
+                                      lastDate: DateTime(2100)
+                                    ).then((date) {
+                                      setState(() {
+                                        var formatter = new DateFormat('dd MMM yyyy');
+                                        String startDate = formatter.format(date);
+                                        startDateController.text = startDate;
+                                      });
+                                    });
+                                  },
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  screenWidth / 4,
+                                  textColor: Colors.white),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
                           top: 15, bottom: 20, left: 15, right: 15),
@@ -160,19 +184,43 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                 fontSize: 18),
                           ),
                           SizedBox(height: 5),
-                          awesomeTextField(
-                            endDateController,
-                            'Tap to enter assignment end date...',
-                            1,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'end date',
+                          Row(
+                            children: [
+                              awesomeTextField(
+                                endDateController,
+                                'Tap to enter assignment end date...',
+                                1,
+                                10,
+                                screenWidth / 1.5,
+                                TextInputType.multiline,
+                                'end date',
+                                readOnly: true,
+                              ),
+                              transparentButton(
+                                  "Select",
+                                  () async {
+                                    showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2001),
+                                      lastDate: DateTime(2100)
+                                    ).then((date) {
+                                      setState(() {
+                                        var formatter = new DateFormat('dd MMM yyyy');
+                                        String endDate = formatter.format(date);
+                                        endDateController.text = endDate;
+                                      });
+                                    });
+                                  },
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  Color.fromRGBO(2, 125, 229, 1),
+                                  screenWidth / 4,
+                                  textColor: Colors.white),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
                           top: 15, bottom: 20, left: 15, right: 15),
