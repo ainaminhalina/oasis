@@ -71,6 +71,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
           children: [
             Container(
               height: screenHeight,
+              color: Colors.white,
               child: Form(
                 key: _formKey,
                 child: SingleChildScrollView(
@@ -138,7 +139,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                       Divider(color: Colors.white),
                       Container(
                         padding: EdgeInsets.only(
-                            top: 15, bottom: 20, left: 15, right: 15),
+                            top: 15, bottom: 20, left: 20, right: 20),
                         width: screenWidth,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,7 +167,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                       Divider(color: Colors.white),
                       Container(
                         padding: EdgeInsets.only(
-                            top: 15, bottom: 15, left: 15, right: 15),
+                            top: 15, bottom: 15, left: 20, right: 20),
                         width: screenWidth,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,7 +212,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            StudentMainScreen(tab: 3)));
+                                            StudentMainScreen(tab: 2)));
                               });
                             } else if (model.currentUser.profilePicture != '') {
                               model.updateProfile(
@@ -222,7 +223,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          StudentMainScreen(tab: 3)));
+                                          StudentMainScreen(tab: 2)));
                             } else {
                               model.updateProfile(
                                 displayName: displayNameController.text,
@@ -234,7 +235,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          StudentMainScreen(tab: 3)));
+                                          StudentMainScreen(tab: 2)));
                             }
                           }
                         }, Color.fromRGBO(2, 125, 229, 1),

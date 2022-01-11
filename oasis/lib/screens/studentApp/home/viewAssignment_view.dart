@@ -99,8 +99,9 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                         children: [
                           Container(
                             padding: EdgeInsets.only(
-                                top: 15, bottom: 20, left: 15, right: 15),
+                                top: 30, bottom: 20, left: 20, right: 20),
                             width: screenWidth,
+                            color: Colors.white,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -125,11 +126,12 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                               ],
                             ),
                           ),
-                          awesomeDivider(0.8, dividerColor),
+                          // awesomeDivider(0.8, dividerColor),
                           Container(
                             padding: EdgeInsets.only(
-                                top: 15, bottom: 20, left: 15, right: 15),
+                                top: 10, bottom: 20, left: 20, right: 20),
                             width: screenWidth,
+                            color: Colors.white,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -154,11 +156,12 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                               ],
                             ),
                           ),
-                          awesomeDivider(0.8, dividerColor),
+                          // awesomeDivider(0.8, dividerColor),
                           Container(
                             padding: EdgeInsets.only(
-                                top: 15, bottom: 20, left: 15, right: 15),
+                                top: 10, bottom: 20, left: 20, right: 20),
                             width: screenWidth,
+                            color: Colors.white,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -183,11 +186,12 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                               ],
                             ),
                           ),
-                          awesomeDivider(0.8, dividerColor),
+                          // awesomeDivider(0.8, dividerColor),
                           Container(
                             padding: EdgeInsets.only(
-                                top: 15, bottom: 20, left: 15, right: 15),
+                                top: 10, bottom: 20, left: 20, right: 20),
                             width: screenWidth,
+                            color: Colors.white,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -212,12 +216,13 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                               ],
                             ),
                           ),
-                          awesomeDivider(0.8, dividerColor),
+                          // awesomeDivider(0.8, dividerColor),
                           InkWell(
                             child: Container(
                               padding: EdgeInsets.only(
-                                  top: 15, bottom: 20, left: 15, right: 15),
+                                  top: 10, bottom: 20, left: 20, right: 20),
                               width: screenWidth,
+                              color: Colors.white,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

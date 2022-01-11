@@ -96,7 +96,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                   children: [
                     Container(
                       padding: EdgeInsets.only(
-                          top: 30, bottom: 20, left: 20, right: 20),
+                          top: 30, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       color: Colors.white,
                       child: Column(
@@ -126,7 +126,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                     // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
-                          top: 10, bottom: 20, left: 20, right: 20),
+                          top: 10, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       color: Colors.white,
                       child: Column(
@@ -156,7 +156,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                     // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
-                          top: 10, bottom: 20, left: 20, right: 20),
+                          top: 10, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       color: Colors.white,
                       child: Column(
@@ -186,7 +186,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                     // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
-                          top: 10, bottom: 20, left: 20, right: 20),
+                          top: 10, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       color: Colors.white,
                       child: Column(
@@ -217,7 +217,7 @@ class _ViewAssignmentViewState extends State<ViewAssignmentView> {
                     InkWell(
                       child: Container(
                         padding: EdgeInsets.only(
-                            top: 10, bottom: 20, left: 20, right: 20),
+                            top: 10, bottom: 20, left: 15, right: 15),
                         width: screenWidth,
                         color: Colors.white,
                         child: Column(

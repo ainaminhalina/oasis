@@ -171,7 +171,7 @@ class SignUpScreenState extends State<SignUpView> {
                                               child: Text(
                                                 dropDownStringItem + " ",
                                                 style: TextStyle(
-                                                    color: Colors.black38,
+                                                    color: Colors.black87,
                                                     fontSize: 16.5,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -280,7 +280,7 @@ class SignUpScreenState extends State<SignUpView> {
             alignment: Alignment.center,
             padding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 0.0),
             child: Text(
-                'Try the sensation of ease in managing all school activities in one hand',
+                'Enter your personal details and start your journey with us!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: grey,

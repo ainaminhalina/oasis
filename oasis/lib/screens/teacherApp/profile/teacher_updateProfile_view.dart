@@ -71,6 +71,7 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
           children: [
             Container(
               height: screenHeight,
+              color: Colors.white,
               child: Form(
                 key: _formKey,
                 child: SingleChildScrollView(
@@ -141,7 +142,7 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                       Divider(color: Colors.white),
                       Container(
                         padding: EdgeInsets.only(
-                            top: 15, bottom: 20, left: 15, right: 15),
+                            top: 15, bottom: 20, left: 20, right: 20),
                         width: screenWidth,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,7 +170,7 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                       Divider(color: Colors.white),
                       Container(
                         padding: EdgeInsets.only(
-                            top: 15, bottom: 15, left: 15, right: 15),
+                            top: 15, bottom: 15, left: 20, right: 20),
                         width: screenWidth,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -214,7 +215,7 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            TeacherMainScreen(tab: 4)));
+                                            TeacherMainScreen(tab: 2)));
                               });
                             }
                             // else if (model.currentUser.profilePicture != '') {
@@ -239,7 +240,7 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          TeacherMainScreen(tab: 4)));
+                                          TeacherMainScreen(tab: 2)));
                             }
                           }
                         }, Color.fromRGBO(2, 125, 229, 1),

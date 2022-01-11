@@ -31,16 +31,16 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
     if (selectedIndex == 0) {
       currentScreen = TeacherHomeView();
     }
+    // if (selectedIndex == 1) {
+    //   currentScreen = ReportView();
+    // }
     if (selectedIndex == 1) {
-      currentScreen = ReportView();
-    }
-    if (selectedIndex == 2) {
       currentScreen = TeacherChatView();
     }
-    if (selectedIndex == 3) {
-      currentScreen = TeacherNotificationView();
-    }
-    if (selectedIndex == 4) {
+    // if (selectedIndex == 3) {
+    //   currentScreen = TeacherNotificationView();
+    // }
+    if (selectedIndex == 2) {
       currentScreen = TeacherProfileView();
     }
   }
@@ -55,28 +55,28 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
 
   BottomNavigationBar _buildTabBar() {
     return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
+      // showSelectedLabels: false,
+      // showUnselectedLabels: false,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.school),
-          label: '',
+          label: 'Classes',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.pages),
-          label: '',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.pages),
+        //   label: '',
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.chat),
-          label: '',
+          label: 'Chat',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications),
-          label: '',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.notifications),
+        //   label: '',
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: '',
+          label: 'Profile',
         ),
       ],
       currentIndex: selectedIndex,
@@ -92,16 +92,16 @@ class _TeacherMainScreenState extends State<TeacherMainScreen> {
     if (selectedIndex == 0) {
       currentScreen = TeacherHomeView();
     }
+    // if (selectedIndex == 1) {
+    //   currentScreen = ReportView();
+    // }
     if (selectedIndex == 1) {
-      currentScreen = ReportView();
-    }
-    if (selectedIndex == 2) {
       currentScreen = TeacherChatView();
     }
-    if (selectedIndex == 3) {
-      currentScreen = TeacherNotificationView();
-    }
-    if (selectedIndex == 4) {
+    // if (selectedIndex == 3) {
+    //   currentScreen = TeacherNotificationView();
+    // }
+    if (selectedIndex == 2) {
       currentScreen = TeacherProfileView();
     }
   }

@@ -59,6 +59,7 @@ class _AddSubmissionViewState extends State<AddSubmissionView> {
           children: [
             Container(
               height: screenHeight,
+              color: Colors.white,
               child: Form(
                 key: _formKey,
                 child: ListView(

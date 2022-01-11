@@ -72,13 +72,14 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
           children: [
             Container(
               height: screenHeight,
+              color: Colors.white,
               child: Form(
                 key: _formKey,
                 child: ListView(
                   children: [
                     Container(
                       padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
+                          top: 30, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,10 +104,10 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                         ],
                       ),
                     ),
-                    awesomeDivider(0.8, dividerColor),
+                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
+                          top: 10, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,10 +132,10 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                         ],
                       ),
                     ),
-                    awesomeDivider(0.8, dividerColor),
+                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
+                          top: 10, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,10 +160,10 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                         ],
                       ),
                     ),
-                    awesomeDivider(0.8, dividerColor),
+                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
+                          top: 10, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,10 +188,10 @@ class _UpdateAssignmentViewState extends State<UpdateAssignmentView> {
                         ],
                       ),
                     ),
-                    awesomeDivider(0.8, dividerColor),
+                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
-                          top: 15, bottom: 20, left: 15, right: 15),
+                          top: 10, bottom: 20, left: 15, right: 15),
                       width: screenWidth,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

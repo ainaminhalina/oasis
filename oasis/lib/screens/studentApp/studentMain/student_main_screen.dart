@@ -31,16 +31,16 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
     if (selectedIndex == 0) {
       currentScreen = StudentHomeView();
     }
+    // if (selectedIndex == 1) {
+    //   currentScreen = ResultView();
+    // }
     if (selectedIndex == 1) {
-      currentScreen = ResultView();
-    }
-    if (selectedIndex == 2) {
       currentScreen = StudentChatView();
     }
-    if (selectedIndex == 3) {
-      currentScreen = StudentNotificationView();
-    }
-    if (selectedIndex == 4) {
+    // if (selectedIndex == 3) {
+    //   currentScreen = StudentNotificationView();
+    // }
+    if (selectedIndex == 2) {
       currentScreen = StudentProfileView();
     }
   }
@@ -55,28 +55,28 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
 
   BottomNavigationBar _buildTabBar() {
     return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
+      // showSelectedLabels: false,
+      // showUnselectedLabels: false,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.school),
-          label: '',
+          label: 'Classes',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.pages),
-          label: '',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.pages),
+        //   label: '',
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.chat),
-          label: '',
+          label: 'Chat',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications),
-          label: '',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.notifications),
+        //   label: '',
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: '',
+          label: 'Profile',
         ),
       ],
       currentIndex: selectedIndex,
@@ -92,16 +92,16 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
     if (selectedIndex == 0) {
       currentScreen = StudentHomeView();
     }
+    // if (selectedIndex == 1) {
+    //   currentScreen = ResultView();
+    // }
     if (selectedIndex == 1) {
-      currentScreen = ResultView();
-    }
-    if (selectedIndex == 2) {
       currentScreen = StudentChatView();
     }
-    if (selectedIndex == 3) {
-      currentScreen = StudentNotificationView();
-    }
-    if (selectedIndex == 4) {
+    // if (selectedIndex == 3) {
+    //   currentScreen = StudentNotificationView();
+    // }
+    if (selectedIndex == 2) {
       currentScreen = StudentProfileView();
     }
   }

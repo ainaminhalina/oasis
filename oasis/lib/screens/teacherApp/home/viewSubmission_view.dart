@@ -92,6 +92,7 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
           children: [
             Container(
               height: screenHeight,
+              color: Colors.white,
               child: Form(
                 key: _formKey,
                 child: ListView(
@@ -124,7 +125,7 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                         ],
                       ),
                     ),
-                    awesomeDivider(0.8, dividerColor),
+                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
                           top: 15, bottom: 20, left: 15, right: 15),
@@ -153,7 +154,7 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                         ],
                       ),
                     ),
-                    awesomeDivider(0.8, dividerColor),
+                    // awesomeDivider(0.8, dividerColor),
                     InkWell(
                       child: Container(
                         padding: EdgeInsets.only(
@@ -190,7 +191,7 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                         );
                       },
                     ),
-                    awesomeDivider(0.8, dividerColor),
+                    // awesomeDivider(0.8, dividerColor),
                     Container(
                       padding: EdgeInsets.only(
                           top: 15, bottom: 20, left: 15, right: 15),
