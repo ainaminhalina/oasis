@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:oasis/models/assignment.dart';
 import 'package:oasis/models/user.dart';
 import 'package:oasis/screens/studentApp/home/viewAssignment_view.dart';
+import 'package:oasis/screens/studentApp/studentMain/student_main_screen.dart';
 import 'package:path/path.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -153,7 +154,11 @@ class _AddSubmissionViewState extends State<AddSubmissionView> {
                           //                     widget.teachersubjectclassroom,
                           //                 assignment: widget.assignment)),
                           //         (route) => false);
-                          Navigator.of(context).pop();
+                          // Navigator.of(context).pop();
+                          Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            StudentMainScreen(tab: 0)));
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,

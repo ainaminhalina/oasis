@@ -42,9 +42,6 @@ class StudentChatViewModel extends ViewModel {
   List<StudentClassroom> _studentClassroomList;
   get studentClassroomList => _studentClassroomList;
 
-  List<Chat> _chatList;
-  get chatList => _chatList;
-
   List<User> _userList;
   get userList => _userList;
 
@@ -68,25 +65,9 @@ class StudentChatViewModel extends ViewModel {
 
     _subjectList = await _subjectService.getSubjects();
     _classroomList = await _classroomService.getClassrooms();
-    _chatList = await _chatService.getChats();
     _userList = await _userService.getUsers();
 
     setBusy(false);
-  }
-
-  // ChatGroup getChatGroup(String chatGroupId) =>
-  //     chatGroupList.firstWhere((chatGroup) => chatGroup.id == chatGroupId);
-
-  List<Chat> getChats(String teachersubjectclassroomID) {
-    List<Chat> myChats = [];
-
-    _chatList.forEach((chat) {
-      if (chat.teachersubjectclassroomID == teachersubjectclassroomID) {
-        myChats.add(chat);
-      }
-    });
-
-    return myChats;
   }
 
   Future createChat({userID, teachersubjectclassroomID, content, createdAt}) async {

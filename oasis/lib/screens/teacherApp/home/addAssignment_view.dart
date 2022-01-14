@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:intl/intl.dart';
+import 'package:oasis/screens/teacherApp/teacherMain/teacher_main_screen.dart';
 import 'package:path/path.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -348,7 +349,11 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                           //                 teachersubjectclassroom:
                           //                     widget.teachersubjectclassroom)),
                           //         (route) => false);
-                          Navigator.of(context).pop();
+                          // Navigator.of(context).pop();
+                          Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            TeacherMainScreen(tab: 0)));
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,

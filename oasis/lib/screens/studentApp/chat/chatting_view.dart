@@ -73,6 +73,8 @@ class _ChattingViewState extends State<ChattingView> {
                                       content: _textController.text,
                                       createdAt:createdAt
                                     );
+
+                                    _textController.text = "";
                                   },
                                   child: CircleAvatar(
                                     child: Icon(Icons.send),

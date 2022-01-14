@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:oasis/screens/teacherApp/teacherMain/teacher_main_screen.dart';
 import 'package:path/path.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -213,7 +214,7 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                             1,
                             10,
                             screenWidth,
-                            TextInputType.multiline,
+                            TextInputType.number,
                             'tp',
                             readOnly: false,
                           ),
@@ -227,23 +228,38 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
                       padding: const EdgeInsets.all(15),
                       child: transparentButton("Evaluate Submission", () async {
                         if (_formKey.currentState.validate()) {
-                          model.evaluateSubmission(
-                            id: widget.submission.id,
-                            tp: tpController.text.toString(),
-                          );
-                          await Future.delayed(Duration(seconds: 1));
-                          awesomeToast('Submission Evaluated!');
-                          // Navigator.of(context, rootNavigator: true)
-                          //     .pushAndRemoveUntil(
-                          //         MaterialPageRoute(
-                          //             builder: (context) => SubmissionView(
-                          //                 subject: widget.subject,
-                          //                 classroom: widget.classroom,
-                          //                 teachersubjectclassroom:
-                          //                     widget.teachersubjectclassroom,
-                          //                 assignment: widget.assignment)),
-                          //         (route) => false);
-                          Navigator.of(context).pop();
+                          if (
+                              tpController.text.toString() == "1" ||
+                              tpController.text.toString() == "2" ||
+                              tpController.text.toString() == "3" ||
+                              tpController.text.toString() == "4" ||
+                              tpController.text.toString() == "5" ||
+                              tpController.text.toString() == "6"
+                              ) {
+                            model.evaluateSubmission(
+                              id: widget.submission.id,
+                              tp: tpController.text.toString(),
+                            );
+                            await Future.delayed(Duration(seconds: 1));
+                            awesomeToast('Submission Evaluated!');
+                            // Navigator.of(context, rootNavigator: true)
+                            //     .pushAndRemoveUntil(
+                            //         MaterialPageRoute(
+                            //             builder: (context) => SubmissionView(
+                            //                 subject: widget.subject,
+                            //                 classroom: widget.classroom,
+                            //                 teachersubjectclassroom:
+                            //                     widget.teachersubjectclassroom,
+                            //                 assignment: widget.assignment)),
+                            //         (route) => false);
+                            // Navigator.of(context).pop();
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        TeacherMainScreen(tab: 0)));
+                          } else {
+                            awesomeToast('Tahap Penguasaan can only be 1 - 6');
+                          }
                         }
                       }, Color.fromRGBO(2, 125, 229, 1),
                           Color.fromRGBO(2, 125, 229, 1), screenWidth - 30,
