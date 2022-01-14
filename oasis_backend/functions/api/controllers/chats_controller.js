@@ -23,7 +23,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
     try {
-        const result = await chatsModel.create(req.body);
+        const result = await chatsModel.setId(req.body);
         if (!result) return res.sendStatus(409);
         return res.status(201).json(result);
     } catch (e) {

@@ -29,7 +29,7 @@ class ChatModel {
     }
 
     update(id, chat) {
-        return database.set("chats", id, chat);
+        return database.set("chats", id, chat); 
     }
 }
 

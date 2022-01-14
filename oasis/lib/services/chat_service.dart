@@ -49,6 +49,7 @@ class ChatService {
     await Rest.post(
       'chats/',
       data: {
+        'id': DateTime.now().millisecondsSinceEpoch.toString(),
         'content': chat.content,
         'createdAt': chat.createdAt,
         'teachersubjectclassroomID': chat.teachersubjectclassroomID,
