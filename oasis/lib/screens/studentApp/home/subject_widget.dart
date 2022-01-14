@@ -78,7 +78,7 @@ class SubjectWidget extends StatelessWidget {
                     child: ListTile(
                       dense: true,
                       title: Text(
-                        subject.title,
+                        subject.title + ' (' + subject.desc + ')',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 15.0,

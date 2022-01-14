@@ -32,7 +32,7 @@ class _SubjectViewState extends State<SubjectView> {
       viewModelBuilder: () => StudentHomeViewModel(),
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
-        appBar: buildAppBar(context, widget.subject.title),
+        appBar: buildAppBar(context, widget.subject.title + ' (' + widget.subject.desc + ')'),
         body: model.isBusy
             ? Center(child: CircularProgressIndicator())
             : model.empty2

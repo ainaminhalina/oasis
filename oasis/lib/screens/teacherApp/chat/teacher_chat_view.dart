@@ -50,7 +50,6 @@ class _TeacherChatViewState extends State<TeacherChatView> {
                                     classroom:
                                         model.getClassroom(tsc.classroomID),
                                     tsc: tsc,
-                                    chatList: model.getChats(tsc.id),
                                   );
                                 },
                               ),

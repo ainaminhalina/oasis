@@ -8,16 +8,16 @@ import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
 import 'package:oasis/screens/shared/appBar.dart';
 import 'package:oasis/screens/shared/colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'teacher_chat_viewmodel.dart';
 
 class ChattingView extends StatefulWidget {
-  ChattingView({this.subject, this.classroom, this.tsc, this.chatList});
+  ChattingView({this.subject, this.classroom, this.tsc});
 
   final Subject subject;
   final Classroom classroom;
   final TeacherSubjectClassroom tsc;
-  final List<Chat> chatList;
 
   @override
   _ChattingViewState createState() => _ChattingViewState();
@@ -31,51 +31,57 @@ class _ChattingViewState extends State<ChattingView> {
     return ViewModelBuilder<TeacherChatViewModel>.reactive(
         disposeViewModel: false,
         viewModelBuilder: () => TeacherChatViewModel(),
+        onModelReady: (model) => model.initialise(),
         builder: (context, model, child) => Scaffold(
               appBar: buildAppBar(
                   context, widget.subject.title + ' ' + widget.classroom.name),
-              body: Center(
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: _buildMessageDisplay(),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Row(
+              body: model.isBusy
+                  ? Center(child: CircularProgressIndicator())
+                  : Center(
+                      child: Column(
                         children: <Widget>[
                           Expanded(
-                            child: RoundInput(
-                              textController: _textController,
-                              // handleSubmitted: (String text) {
-                              //   _handleSubmittedLocal();
-                              // },
-                              // handleChange: _handleChange,
+                            child: _buildMessageDisplay(model),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: RoundInput(
+                                    textController: _textController,
+                                    // handleSubmitted: (String text) {
+                                    //   _handleSubmittedLocal();
+                                    // },
+                                    // handleChange: _handleChange,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5.0,
+                                ),
+                                GestureDetector(
+                                  // onTap: _handleSubmittedLocal,
+                                  child: CircleAvatar(
+                                    child: Icon(Icons.send),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          GestureDetector(
-                            // onTap: _handleSubmittedLocal,
-                            child: CircleAvatar(
-                              child: Icon(Icons.send),
-                            ),
-                          ),
+                          )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
+                    ),
             ));
   }
 
-  Widget _buildMessageDisplay() {
+  Widget _buildMessageDisplay(model) {
+    final chatList = model.getChats(widget.tsc.id);
+
     return ListView.builder(
-      itemCount: widget.chatList.length,
+      itemCount: chatList.length,
       itemBuilder: (context, index) {
-        final chat = widget.chatList[index];
+        final chat = chatList[index];
+        final user = model.getCurrentUser(chat.userID);
 
         return Padding(
           padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
@@ -94,7 +100,9 @@ class _ChattingViewState extends State<ChattingView> {
                   boxShadow: [
                     //BoxShadow
                     BoxShadow(
-                      color: Colors.green[200],
+                      color: (chat.userID == model.currentUser.id)
+                          ? Colors.blue[200]
+                          : Colors.grey[300],
                       offset: const Offset(0.0, 0.0),
                       blurRadius: 0.0,
                       spreadRadius: 0.0,
@@ -125,24 +133,62 @@ class _ChattingViewState extends State<ChattingView> {
                     Expanded(
                       child: ListTile(
                         dense: true,
-                        title: Text(
-                          chat.content,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w900),
+                        title: Row(
+                          children: <Widget>[
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                color: Colors.grey[400],
+                                child: user.profilePicture == null ||
+                                        user.profilePicture == ''
+                                    ? Icon(
+                                        Icons.person,
+                                        color: black,
+                                      )
+                                    : CachedNetworkImage(
+                                        imageUrl: user.profilePicture,
+                                        fit: BoxFit.fill,
+                                        placeholder: (context, url) => Center(
+                                            child: CircularProgressIndicator()),
+                                        errorWidget: (context, url, error) =>
+                                            Icon(Icons.error),
+                                      ),
+                              ),
+                            ),
+                            Text(
+                              '   ' + user.displayName,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ],
                         ),
                         subtitle: Container(
-                          padding: EdgeInsets.only(top: 4.0, bottom: 4.0),
+                          padding: EdgeInsets.only(top: 10.0, bottom: 4.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                chat.createdAt,
+                                chat.content,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.w400),
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Container(
+                                  child: Text(
+                                    chat.createdAt,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
                               ),
                             ],
                           ),

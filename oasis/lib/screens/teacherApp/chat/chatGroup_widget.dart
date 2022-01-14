@@ -7,12 +7,12 @@ import 'package:oasis/screens/shared/colors.dart';
 import 'package:oasis/screens/teacherApp/chat/chatting_view.dart';
 
 class ChatGroupWidget extends StatelessWidget {
-  ChatGroupWidget({this.subject, this.classroom, this.tsc, this.chatList});
+  ChatGroupWidget({this.subject, this.classroom, this.tsc});
 
   final Subject subject;
   final Classroom classroom;
   final TeacherSubjectClassroom tsc;
-  final List<Chat> chatList;
+  // final List<Chat> chatList;
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +65,7 @@ class ChatGroupWidget extends StatelessWidget {
                         builder: (context) => ChattingView(
                             subject: subject,
                             classroom: classroom,
-                            tsc: tsc,
-                            chatList: chatList)));
+                            tsc: tsc)));
               },
               child: Row(
                 children: [

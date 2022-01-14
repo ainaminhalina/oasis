@@ -132,25 +132,44 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                 fontSize: 18),
                           ),
                           SizedBox(height: 5),
-                          Row(
-                            children: [
-                              awesomeTextField(
-                                startDateController,
-                                'Tap to enter assignment start date...',
-                                1,
-                                10,
-                                screenWidth / 1.5,
-                                TextInputType.multiline,
-                                'start date',
-                                readOnly: true,
-                              ),
-                              transparentButton(
-                                  "Select",
-                                  () async {
+                          Container(
+                            width: screenWidth,
+                            child: TextFormField(
+                              autocorrect: false,
+                              // ignore: missing_return
+                              validator: (val) {
+                                if (val.isEmpty) {
+                                  return ('Please insert Start date');
+                                }
+                              },
+                              controller: startDateController,
+                              keyboardType: TextInputType.multiline,
+                              minLines: 1,
+                              maxLines: 10,
+                              readOnly: true,
+                              style: TextStyle(color: Colors.black54, fontSize: 13.0, fontWeight: FontWeight.w500),
+                              decoration: InputDecoration(
+                                hintText: 'Tap to enter assignment start date...',
+                                hintStyle: TextStyle(color: Colors.black38, fontSize: 14.0, fontWeight: FontWeight.w400),
+                                fillColor: Colors.white,
+                                filled: true,
+                                contentPadding:
+                                    EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderSide: const BorderSide(color: dividerColor, width: 0.5)),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(2.0),
+                                ),
+                                prefixIcon: IconButton(
+                                  icon: Icon(
+                                    Icons.calendar_today_outlined,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: () {
                                     showDatePicker(
                                       context: context,
                                       initialDate: DateTime.now(),
-                                      firstDate: DateTime(2001),
+                                      firstDate: DateTime(2000),
                                       lastDate: DateTime(2100)
                                     ).then((date) {
                                       setState(() {
@@ -160,11 +179,9 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                       });
                                     });
                                   },
-                                  Color.fromRGBO(2, 125, 229, 1),
-                                  Color.fromRGBO(2, 125, 229, 1),
-                                  screenWidth / 4,
-                                  textColor: Colors.white),
-                            ],
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -184,25 +201,44 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                 fontSize: 18),
                           ),
                           SizedBox(height: 5),
-                          Row(
-                            children: [
-                              awesomeTextField(
-                                endDateController,
-                                'Tap to enter assignment end date...',
-                                1,
-                                10,
-                                screenWidth / 1.5,
-                                TextInputType.multiline,
-                                'end date',
-                                readOnly: true,
-                              ),
-                              transparentButton(
-                                  "Select",
-                                  () async {
+                          Container(
+                            width: screenWidth,
+                            child: TextFormField(
+                              autocorrect: false,
+                              // ignore: missing_return
+                              validator: (val) {
+                                if (val.isEmpty) {
+                                  return ('Please insert End date');
+                                }
+                              },
+                              controller: endDateController,
+                              keyboardType: TextInputType.multiline,
+                              minLines: 1,
+                              maxLines: 10,
+                              readOnly: true,
+                              style: TextStyle(color: Colors.black54, fontSize: 13.0, fontWeight: FontWeight.w500),
+                              decoration: InputDecoration(
+                                hintText: 'Tap to enter assignment end date...',
+                                hintStyle: TextStyle(color: Colors.black38, fontSize: 14.0, fontWeight: FontWeight.w400),
+                                fillColor: Colors.white,
+                                filled: true,
+                                contentPadding:
+                                    EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderSide: const BorderSide(color: dividerColor, width: 0.5)),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(2.0),
+                                ),
+                                prefixIcon: IconButton(
+                                  icon: Icon(
+                                    Icons.calendar_today_outlined,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: () {
                                     showDatePicker(
                                       context: context,
                                       initialDate: DateTime.now(),
-                                      firstDate: DateTime(2001),
+                                      firstDate: DateTime(2000),
                                       lastDate: DateTime(2100)
                                     ).then((date) {
                                       setState(() {
@@ -212,11 +248,9 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                       });
                                     });
                                   },
-                                  Color.fromRGBO(2, 125, 229, 1),
-                                  Color.fromRGBO(2, 125, 229, 1),
-                                  screenWidth / 4,
-                                  textColor: Colors.white),
-                            ],
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -236,34 +270,53 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                                 fontSize: 18),
                           ),
                           SizedBox(height: 5),
-                          Row(
-                            children: [
-                              awesomeTextField(
-                                fileController,
-                                'No file selected...',
-                                1,
-                                10,
-                                screenWidth / 1.5,
-                                TextInputType.multiline,
-                                'file',
-                                readOnly: true,
-                              ),
-                              transparentButton("Browse", () async {
-                                final result = await FilePicker.platform
+                          Container(
+                            width: screenWidth,
+                            child: TextFormField(
+                              autocorrect: false,
+                              // ignore: missing_return
+                              validator: (val) {
+                                if (val.isEmpty) {
+                                  return ('Please insert File');
+                                }
+                              },
+                              controller: fileController,
+                              keyboardType: TextInputType.multiline,
+                              minLines: 1,
+                              maxLines: 10,
+                              readOnly: true,
+                              style: TextStyle(color: Colors.black54, fontSize: 13.0, fontWeight: FontWeight.w500),
+                              decoration: InputDecoration(
+                                hintText: 'No file selected...',
+                                hintStyle: TextStyle(color: Colors.black38, fontSize: 14.0, fontWeight: FontWeight.w400),
+                                fillColor: Colors.white,
+                                filled: true,
+                                contentPadding:
+                                    EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderSide: const BorderSide(color: dividerColor, width: 0.5)),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(2.0),
+                                ),
+                                prefixIcon: IconButton(
+                                  icon: Icon(
+                                    Icons.file_copy_outlined,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: () async {
+                                    final result = await FilePicker.platform
                                     .pickFiles(allowMultiple: false);
 
-                                if (result == null) return;
-                                final path = result.files.single.path;
+                                    if (result == null) return;
+                                    final path = result.files.single.path;
 
-                                setState(() => file = File(path));
+                                    setState(() => file = File(path));
 
-                                fileController.text = basename(file.path);
-                              },
-                                  Color.fromRGBO(2, 125, 229, 1),
-                                  Color.fromRGBO(2, 125, 229, 1),
-                                  screenWidth / 4,
-                                  textColor: Colors.white),
-                            ],
+                                    fileController.text = basename(file.path);
+                                  },
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
