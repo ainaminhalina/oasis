@@ -12,7 +12,7 @@ import 'package:oasis/screens/shared/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 
-import 'teacher_chat_viewmodel.dart';
+import 'student_chat_viewmodel.dart';
 
 class ChattingView extends StatefulWidget {
   ChattingView({this.subject, this.classroom, this.tsc});
@@ -30,9 +30,9 @@ class _ChattingViewState extends State<ChattingView> {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<TeacherChatViewModel>.reactive(
+    return ViewModelBuilder<StudentChatViewModel>.reactive(
         disposeViewModel: false,
-        viewModelBuilder: () => TeacherChatViewModel(),
+        viewModelBuilder: () => StudentChatViewModel(),
         onModelReady: (model) => model.initialise(),
         builder: (context, model, child) => Scaffold(
               appBar: buildAppBar(

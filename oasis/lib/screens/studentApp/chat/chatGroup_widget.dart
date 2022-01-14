@@ -4,7 +4,7 @@ import 'package:oasis/models/classroom.dart';
 import 'package:oasis/models/subject.dart';
 import 'package:oasis/models/teachersubjectclassroom.dart';
 import 'package:oasis/screens/shared/colors.dart';
-import 'package:oasis/screens/teacherApp/chat/chatting_view.dart';
+import 'package:oasis/screens/studentApp/chat/chatting_view.dart';
 
 class ChatGroupWidget extends StatelessWidget {
   ChatGroupWidget({this.subject, this.classroom, this.tsc});

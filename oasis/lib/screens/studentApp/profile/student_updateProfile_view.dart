@@ -31,7 +31,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  File _imageFile;
+  File _imageFile = null;
 
   Future<void> _pickImage(ImageSource source) async {
     PickedFile selected = await ImagePicker().getImage(source: source);
@@ -102,15 +102,14 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                               width: MediaQuery.of(context).size.width / 3,
                               height: MediaQuery.of(context).size.width / 3,
                               color: Colors.grey,
+                              // child: Icon(Icons.add_a_photo,
+                              //     size: 50, color: Colors.white)
                               child: _imageFile == null &&
                                       (widget.user.profilePicture == '' ||
                                           widget.user.profilePicture == null)
                                   ? Icon(Icons.add_a_photo,
                                       size: 50, color: Colors.white)
-                                  : _imageFile != null &&
-                                          (widget.user.profilePicture == '' ||
-                                              widget.user.profilePicture ==
-                                                  null)
+                                  : _imageFile != null
                                       ? Image.file(
                                           _imageFile,
                                           fit: BoxFit.cover,
@@ -123,7 +122,8 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                                                   CircularProgressIndicator()),
                                           errorWidget: (context, url, error) =>
                                               Icon(Icons.error),
-                                        )),
+                                        )
+                              ),
                         ),
                       ),
                       _imageFile != null
@@ -214,17 +214,19 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                                         builder: (context) =>
                                             StudentMainScreen(tab: 2)));
                               });
-                            } else if (model.currentUser.profilePicture != '') {
-                              model.updateProfile(
-                                  displayName: displayNameController.text,
-                                  phoneNumber: phoneNumberController.text);
-                              await Future.delayed(Duration(seconds: 1));
-                              awesomeToast('Information Updated!');
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          StudentMainScreen(tab: 2)));
-                            } else {
+                            }
+                            // else if (model.currentUser.profilePicture != '') {
+                            //   model.updateProfile(
+                            //       displayName: displayNameController.text,
+                            //       phoneNumber: phoneNumberController.text);
+                            //   await Future.delayed(Duration(seconds: 1));
+                            //   awesomeToast('Information Updated!');
+                            //   Navigator.of(context).pushReplacement(
+                            //       MaterialPageRoute(
+                            //           builder: (context) =>
+                            //               StudentMainScreen(tab: 3)));
+                            // }
+                            else {
                               model.updateProfile(
                                 displayName: displayNameController.text,
                                 phoneNumber: phoneNumberController.text,

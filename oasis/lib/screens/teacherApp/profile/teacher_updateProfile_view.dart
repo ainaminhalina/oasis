@@ -102,30 +102,27 @@ class _TeacherUpdateProfileViewState extends State<TeacherUpdateProfileView> {
                               width: MediaQuery.of(context).size.width / 3,
                               height: MediaQuery.of(context).size.width / 3,
                               color: Colors.grey,
-                              child: Icon(Icons.add_a_photo,
-                                  size: 50, color: Colors.white)
-                              // child: _imageFile == null &&
-                              //         (widget.user.profilePicture == '' ||
-                              //             widget.user.profilePicture == null)
-                              //     ? Icon(Icons.add_a_photo,
-                              //         size: 50, color: Colors.white)
-                              //     : _imageFile != null &&
-                              //             (widget.user.profilePicture == '' ||
-                              //                 widget.user.profilePicture ==
-                              //                     null)
-                              //         ? Image.file(
-                              //             _imageFile,
-                              //             fit: BoxFit.cover,
-                              //           )
-                              //         : CachedNetworkImage(
-                              //             imageUrl: widget.user.profilePicture,
-                              //             fit: BoxFit.fill,
-                              //             placeholder: (context, url) => Center(
-                              //                 child:
-                              //                     CircularProgressIndicator()),
-                              //             errorWidget: (context, url, error) =>
-                              //                 Icon(Icons.error),
-                              //           )
+                              // child: Icon(Icons.add_a_photo,
+                              //     size: 50, color: Colors.white)
+                              child: _imageFile == null &&
+                                      (widget.user.profilePicture == '' ||
+                                          widget.user.profilePicture == null)
+                                  ? Icon(Icons.add_a_photo,
+                                      size: 50, color: Colors.white)
+                                  : _imageFile != null
+                                      ? Image.file(
+                                          _imageFile,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : CachedNetworkImage(
+                                          imageUrl: widget.user.profilePicture,
+                                          fit: BoxFit.fill,
+                                          placeholder: (context, url) => Center(
+                                              child:
+                                                  CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) =>
+                                              Icon(Icons.error),
+                                        )
                               ),
                         ),
                       ),

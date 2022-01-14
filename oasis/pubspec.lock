@@ -71,6 +71,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.4"
+  cloud_functions:
+    dependency: "direct main"
+    description:
+      name: cloud_functions
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.5"
+  cloud_functions_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_functions_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.20"
+  cloud_functions_web:
+    dependency: transitive
+    description:
+      name: cloud_functions_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.6"
   collection:
     dependency: transitive
     description:
@@ -99,6 +120,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  cupertino_list_tile:
+    dependency: "direct main"
+    description:
+      name: cupertino_list_tile
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   dio:
     dependency: "direct main"
     description:
@@ -196,14 +224,14 @@ packages:
       name: firebase_core_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.2.3"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.3"
   firebase_storage:
     dependency: "direct main"
     description:

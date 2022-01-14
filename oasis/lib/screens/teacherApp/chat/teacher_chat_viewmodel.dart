@@ -72,6 +72,20 @@ class TeacherChatViewModel extends ViewModel {
     return myChats;
   }
 
+  Future createChat({userID, teachersubjectclassroomID, content, createdAt}) async {
+    setBusy(true);
+
+    Chat chat = Chat(
+        userID: userID,
+        teachersubjectclassroomID: teachersubjectclassroomID,
+        content: content,
+        createdAt: createdAt);
+
+    await _chatService.createChat(chat);
+
+    setBusy(false);
+  }
+
   Subject getSubject(String subjectID) =>
       subjectList.firstWhere((subject) => subject.id == subjectID);
 

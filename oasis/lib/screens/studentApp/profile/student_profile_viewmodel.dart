@@ -8,7 +8,9 @@ import 'package:oasis/screens/signin/signin_view.dart';
 import 'package:oasis/screens/viewmodel.dart';
 import 'package:oasis/services/authentication_service.dart';
 import 'package:oasis/services/user_service.dart';
-// import 'package:oasis/services/cloud_storage_service.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:oasis/api/firebase_api.dart';
+import 'package:path/path.dart';
 
 class StudentProfileViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
@@ -22,7 +24,7 @@ class StudentProfileViewModel extends ViewModel {
   }) async {
     setBusy(true);
 
-    if (imageFile == null) {
+    if (imageFile == null || imageFile == '') {
       await _userService.updateUser(
           id: currentUser.id,
           displayName: displayName,
@@ -31,14 +33,27 @@ class StudentProfileViewModel extends ViewModel {
       currentUser.displayName = displayName;
       currentUser.phoneNumber = phoneNumber;
     } else {
-      // await cloudStorageService
-      //     .updateProfile(
-      //       imageToUpload: imageFile,
-      //       title: displayName,
-      //       displayName: displayName,
-      //       phoneNumber: phoneNumber,
-      //     )
-      //     .whenComplete(() {});
+      final fileName = basename(imageFile.path);
+      final destination = 'files/$fileName';
+
+      UploadTask task = FirebaseApi.uploadFile(destination, imageFile);
+
+      String fileUrl = '';
+
+      if (task != null) {
+        final snapshot = await task.whenComplete(() => {});
+        fileUrl = await snapshot.ref.getDownloadURL();
+      }
+
+      await _userService.updateUser(
+          id: currentUser.id,
+          displayName: displayName,
+          phoneNumber: phoneNumber,
+          profilePicture: fileUrl);
+
+      currentUser.displayName = displayName;
+      currentUser.phoneNumber = phoneNumber;
+      currentUser.profilePicture = fileUrl;
     }
 
     setBusy(false);
