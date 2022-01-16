@@ -77,131 +77,171 @@ class _ViewSubmissionViewState extends State<ViewSubmissionView> {
               color: Colors.white,
               child: Form(
                 key: _formKey,
-                child: ListView(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(
-                          top: 30, bottom: 20, left: 20, right: 20),
-                      width: screenWidth,
-                      color: Colors.white,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Submitted Date:',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey[300],
+                          offset: const Offset(
+                            5.0,
+                            5.0,
                           ),
-                          SizedBox(height: 5),
-                          awesomeTextField(
-                            dateController,
-                            'Tap to enter submitted date...',
-                            1,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'date',
-                            readOnly: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                    // awesomeDivider(0.8, dividerColor),
-                    InkWell(
-                      child: Container(
-                        padding: EdgeInsets.only(
-                            top: 10, bottom: 20, left: 20, right: 20),
-                        width: screenWidth,
-                        color: Colors.white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'File:',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18),
-                            ),
-                            SizedBox(height: 5),
-                            awesomeTextField(
-                              fileController,
-                              'No submission...',
-                              1,
-                              10,
-                              screenWidth,
-                              TextInputType.multiline,
-                              'file',
-                              readOnly: true,
-                            ),
-                          ],
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        ), //BoxShadow
+                        BoxShadow(
+                          color: Colors.white,
+                          offset: const Offset(0.0, 0.0),
+                          blurRadius: 0.0,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ],
+                      border: Border.symmetric(
+                        horizontal: BorderSide(
+                          width: 0.5,
+                          color: dividerColor,
+                        ),
+                        vertical: BorderSide(
+                          width: 0.5,
+                          color: dividerColor,
                         ),
                       ),
-                      onTap: () {
-                        openFile(
-                          url: widget.submission.file.toString(),
-                          fileName: "My submission",
-                        );
-                      },
                     ),
-                    // awesomeDivider(0.8, dividerColor),
-                    Container(
-                      padding: EdgeInsets.only(
-                          top: 10, bottom: 20, left: 20, right: 20),
-                      width: screenWidth,
-                      color: Colors.white,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Tahap Penguasaan:',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
+                    child: ListView(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(
+                              top: 30, bottom: 20, left: 20, right: 20),
+                          width: screenWidth,
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Submitted Date:',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                dateController.text.toString(),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15),
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 5),
-                          awesomeTextField(
-                            tpController,
-                            'Unevaluated',
-                            1,
-                            10,
-                            screenWidth,
-                            TextInputType.multiline,
-                            'tp',
-                            readOnly: true,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                              top: 10, bottom: 20, left: 15, right: 15),
+                          width: screenWidth,
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'File:',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                      child: InkWell(
+                                        child:
+                                          Image.asset('assets/images/doc.jpeg', width: 45),
+                                        onTap: () {
+                                          openFile(
+                                            url: widget.submission.file.toString(),
+                                            fileName: widget.submission.submitDate.toString(),
+                                          );
+                                        },
+                                      )
+                                  ),
+                                  Expanded(
+                                    child:
+                                      Text(
+                                        fileController.text.toString(),
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15),
+                                      ),
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
                       ),
+                        Container(
+                          padding: EdgeInsets.only(
+                              top: 10, bottom: 20, left: 20, right: 20),
+                          width: screenWidth,
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tahap Penguasaan:',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                (tpController.text.toString() == "" || tpController.text.toString() == null) ? "Unevaluated" : tpController.text.toString(),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        (widget.submission.tp == "")
+                            ? Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: transparentButton("Resubmit Submission",
+                                    () async {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => EditSubmissionView(
+                                              subject: widget.subject,
+                                              teacher: widget.teacher,
+                                              teachersubjectclassroom:
+                                                  widget.teachersubjectclassroom,
+                                              assignment: widget.assignment,
+                                              submission: widget.submission)));
+                                },
+                                    Color.fromRGBO(2, 125, 229, 1),
+                                    Color.fromRGBO(2, 125, 229, 1),
+                                    screenWidth - 30,
+                                    textColor: Colors.white),
+                              )
+                            : Container()
+                      ],
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    (widget.submission.tp == "")
-                        ? Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: transparentButton("Resubmit Submission",
-                                () async {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => EditSubmissionView(
-                                          subject: widget.subject,
-                                          teacher: widget.teacher,
-                                          teachersubjectclassroom:
-                                              widget.teachersubjectclassroom,
-                                          assignment: widget.assignment,
-                                          submission: widget.submission)));
-                            },
-                                Color.fromRGBO(2, 125, 229, 1),
-                                Color.fromRGBO(2, 125, 229, 1),
-                                screenWidth - 30,
-                                textColor: Colors.white),
-                          )
-                        : Container()
-                  ],
+                  ),
                 ),
               ),
             ),

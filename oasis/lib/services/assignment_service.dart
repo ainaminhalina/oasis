@@ -14,18 +14,26 @@ class AssignmentService {
       FirebaseFirestore.instance.collection('assignments');
 
   Future<List<Assignment>> getAssignments() async {
-    final jsonList = await Rest.get('assignments');
-    final assignmentList = <Assignment>[];
+    // final jsonList = await Rest.get('assignments');
+    // final assignmentList = <Assignment>[];
 
-    if (jsonList != null) {
-      for (int i = 0; i < jsonList.length; i++) {
-        final json = jsonList[i];
-        Assignment assignment = Assignment.fromJson(json);
-        assignmentList.add(assignment);
-      }
-    }
+    // if (jsonList != null) {
+    //   for (int i = 0; i < jsonList.length; i++) {
+    //     final json = jsonList[i];
+    //     Assignment assignment = Assignment.fromJson(json);
+    //     assignmentList.add(assignment);
+    //   }
+    // }
 
-    return assignmentList;
+    // return assignmentList;
+
+    QuerySnapshot snapshots = await _assignmentsRef
+        .orderBy("startDate", descending: false)
+        .get();
+
+    return snapshots.docs
+        .map((snapshot) => Assignment.fromSnapshot(snapshot))
+        .toList();
   }
 
   Future createAssignment(Assignment assignment) async {

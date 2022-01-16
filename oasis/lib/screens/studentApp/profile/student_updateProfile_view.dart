@@ -147,7 +147,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                             Text(
                               'Full name:',
                               style: TextStyle(
-                                  color: grey,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18),
                             ),
@@ -175,7 +175,7 @@ class _StudentUpdateProfileViewState extends State<StudentUpdateProfileView> {
                             Text(
                               'Phone number:',
                               style: TextStyle(
-                                  color: grey,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18),
                             ),

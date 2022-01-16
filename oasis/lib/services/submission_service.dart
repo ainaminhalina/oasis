@@ -16,18 +16,25 @@ class SubmissionService {
       FirebaseFirestore.instance.collection('submissions');
 
   Future<List<Submission>> getSubmissions() async {
-    final jsonList = await Rest.get('submissions');
-    final submissionList = <Submission>[];
+    // final jsonList = await Rest.get('submissions');
+    // final submissionList = <Submission>[];
 
-    if (jsonList != null) {
-      for (int i = 0; i < jsonList.length; i++) {
-        final json = jsonList[i];
-        Submission submission = Submission.fromJson(json);
-        submissionList.add(submission);
-      }
-    }
+    // if (jsonList != null) {
+    //   for (int i = 0; i < jsonList.length; i++) {
+    //     final json = jsonList[i];
+    //     Submission submission = Submission.fromJson(json);
+    //     submissionList.add(submission);
+    //   }
+    // }
 
-    return submissionList;
+    // return submissionList;
+    QuerySnapshot snapshots = await _submissionsRef
+        .orderBy("submitDate", descending: true)
+        .get();
+
+    return snapshots.docs
+        .map((snapshot) => Submission.fromSnapshot(snapshot))
+        .toList();
   }
 
   Future createSubmission(Submission submission) async {
@@ -55,6 +62,7 @@ class SubmissionService {
       String assignmentID) async {
     QuerySnapshot snapshots = await _submissionsRef
         .where('assignmentID', isEqualTo: assignmentID)
+        .orderBy("submitDate", descending: true)
         .get();
     return snapshots.docs
         .map((snapshot) => Submission.fromSnapshot(snapshot))
